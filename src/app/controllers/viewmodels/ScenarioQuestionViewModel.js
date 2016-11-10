@@ -21,8 +21,11 @@
             that.embedCode = question.embedCode;
 
             that.submitAnswer = function () {
-                question.answer(branchtrackInstance.score);
-                branchtrackInstance.destroy();
+                question.answer(branchtrackInstance ? branchtrackInstance.score : 100);
+                
+                if(typeof branchtrackInstance !== 'undefined' && branchtrackInstance !== null){
+                    branchtrackInstance.destroy();
+                }
             };
         };
     }

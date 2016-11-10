@@ -22,6 +22,10 @@
 
             that.projectId = projectId;
 
+            if(typeof projectId === 'undefined' || projectId === null) {                
+                that.affectProgress = false;
+            }
+
             that.masteryScore = masteryScore;
 
             function answer(score) {
