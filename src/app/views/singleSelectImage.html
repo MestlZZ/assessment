@@ -3,9 +3,14 @@
         <div class="single-select-image-list-item" ng-repeat="answer in question.answers">
             <a class="thumbnail-container" ng-click="question.checkAnswer(answer)" ng-class="{ checked: answer.checked }">
                 <span class="thumbnail-wrapper">
-                    <span class="thumbnail-selected"></span>
                     <image-loader url="answer.image" width="250" height="200" scale-by-smaller-side="true"></image-loader>
-                </span><span class="preview-button-container"><span class="preview-button" ng-click="singleSelectImage.openPreviewImage(answer.image);$event.stopPropagation();"></span></span>
+                    <i class="thumbnail-selected icon check-mark"></i>
+                </span>
+                <span class="preview-button-container">
+                    <span class="preview-button" ng-click="singleSelectImage.openPreviewImage(answer.image);$event.stopPropagation();">
+                        <i class="preview-button-icon icon search-plus"></i>
+                    </span>
+                </span>
             </a>
         </div>
     </div>

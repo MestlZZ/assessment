@@ -17,16 +17,67 @@
 
 .touch {
     .main-header {
+        height: 70px;
+
         .button-container {
             display: none;
         }
     }
 }
 
+header.main-header {    
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .scenario-question-container {
     overflow-x: auto;
 }
 
+.question {
+     .statements {
+          .statement-item {
+               .statement-buttons-container {
+                    .display-flex;
+                    .flex-direction(column);
+                    .align-items(center);
+
+                    padding: 0px 40px 20px;
+
+                    .statement-button {
+                        max-width: none;
+
+                        &.true {
+                            margin: 0 10px 10px;
+                        }
+
+                        &.false {
+                            margin: 10px 10px 0;
+                        }
+                    }
+               }
+          }
+     }
+}
+.statement-buttons-container {    
+    .display-flex;
+    .flex-direction(column);
+    .align-items(center);
+
+    padding: 0px 40px 20px;
+
+    .statement-button {
+        max-width: none;
+
+        &.true {
+            margin: 0 10px 10px;
+        }
+
+        &.false {
+            margin: 10px 10px 0;
+        }
+    }
+}
 
 .submit-wrapper {
     .button {
@@ -41,11 +92,50 @@
 .summary {
     .summary-header {
         .summary-header-content {
-            .progress-control-container {
-                .progress-control {
-                    margin-left: -160px;
+            .summary-buttons {
+                .flex-direction(column);
+
+                .summary-button-container {
+                    .summary-retry-notification-container {
+                        max-width: 100%;
+                        margin-top: 7px;
+
+                        .summary-retry-notification {
+                            max-width: 100%;
+                        }
+                    }
+
+                    .summary-button {
+                        width: 100%;
+                        max-width: 100%;
+                    }
+
+                    + .summary-button-container {
+                        margin: 0;
+
+                        .summary-button {                            
+                            margin-top: 20px;                            
+
+                            &.attempts {
+                                margin-top: 50px;
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+}
+
+.question {
+     .statements { 
+         .statements-list {
+              .answer-container {
+                  &::before { 
+                      width: 300px;
+                      margin-left: -150px;
+                  }
+            } 
+        } 
+    } 
 }

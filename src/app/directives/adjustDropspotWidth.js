@@ -14,14 +14,14 @@
                 
                 $element.on('dragstop', function () {
                     addDragHandler($element, $question);
-                    $('.dropspot.ui-droppable', $question).css('width', '');
+                    $('.dropspot.ui-droppable', $question).css('min-width', '');
                 });
             }
         };
 
         function addDragHandler($element, $question) {
             $element.one('drag', function () {
-                $('.dropspot.ui-droppable.active', $question).css('width', $element.css('width'));
+                $('.dropspot.ui-droppable.active', $question).css('min-width', $element.css('width'));
             });
         }
     }

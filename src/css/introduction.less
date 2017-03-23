@@ -1,25 +1,22 @@
 @import "common";
 
-.bottom-border() {
-    border-bottom: 1px solid #dadada;
-}
-
 @header-full-height: 96px;
 @header-small-height: 70px;
 
 .main-header {
     position: fixed;
-    visibility: hidden;
     width: 100%;
+    height: @header-full-height + 1;
     top: 0;
     left: 0;
-    height: @header-full-height + 1;
     padding: 0 50px;
-    .bottom-border;
     overflow: hidden;
-    background-color: #fff;
+    visibility: hidden;
     opacity: 0.97;
     z-index: 100;
+
+    background-color: @content-body-color;
+    border-bottom: 1px solid fade(@text-color, 10%);
 
     @media (max-width: 1499px) {
         .questions-reached & {
@@ -56,7 +53,7 @@
     .timer {
         position: relative;
         display: table-cell;
-        width: 150px;
+        width: 160px;
         vertical-align: middle;
         z-index: 1;
     }
@@ -72,11 +69,11 @@
         .display-flex;
         .flex-direction(column);
         .align-items(center);
-        .bottom-border;
         .border-box;
         width: 100%;
         height: 100%;
         overflow: auto;
+        border-bottom: 1px solid fade(@text-color, 10%);
 
         .intro-gone & {
             background-color: #fff;
@@ -88,6 +85,7 @@
             height: @header-full-height;
             top: 0;
             left: 0;
+
             transition: height .2s linear;
 
             .intro-gone & {
@@ -108,17 +106,17 @@
         }
 
         @scroll-hint-height: 77px;
+        @hint-color: fade(@text-color, 70%);
 
         .content-container {
             .display-flex;
             .flex(1 1 auto);
             position: relative;
             width: 100%;
-            max-width: 960px;
+            max-width: 1200px;
             margin: 95px auto 50px;
             overflow: hidden;
 
-            @border-color: #323232;
             @shadow-block-height: 20px;
 
             .limitation-border() {
@@ -128,16 +126,17 @@
                 height: @shadow-block-height;
                 left: 20px;
                 right: 20px;
-                background-color: #dadada;
-                z-index: 1;
                 opacity: 1;
+                z-index: 1;
+
+                background-color: fade(@text-color, 10%);
                 transition: opacity 0.2s linear;
             }
 
             &:before {
                 .limitation-border;
                 top: -(@shadow-block-height - 1);
-                box-shadow: 0px 7px 15px -9px @border-color;
+                box-shadow: 0 7px 15px -9px @text-color;
 
                 .at-top-position& {
                     opacity: 0;
@@ -147,7 +146,7 @@
             &:after {
                 .limitation-border;
                 bottom: -(@shadow-block-height - 1);
-                box-shadow: 0px -9px 15px -9px @border-color;
+                box-shadow: 0 -9px 15px -9px @text-color;
 
                 .at-bottom-position& {
                     opacity: 0;
@@ -156,39 +155,40 @@
 
             .content-wrapper {
                 width: 100%;
-                padding: 65px 50px 40px;
+                padding: 65px 150px 40px;
                 overflow-y: hidden;
                 .border-box;
 
                 .header-title-container {
-                    font-family: RobotoslabBold;
                     text-align: center;
                     margin-bottom: 65px;
+                    font-family: @main-font-fontFamily;
 
                     .header-title-wrapper {
                         display: inline-block;
                         max-width: 100%;
+                        color: @text-color;
 
                         .header-assessment-label {
-                            color: #777777;
-                            font-size: 20px;
                             text-align: left;
-                            text-transform: uppercase;
+                            font-size: 14px;
+                            color: fade(@text-color, 70%);
+                            font-weight: normal;
                             .crop-text-by-size-with-dots(100%, block);
                         }
 
                         .header-assessment-title {
-                            color: #222222;
-                            font-size: 36px;
+                            color: @text-color;
+                            font-weight: 600;
+                            font-size: 34px;
                             word-wrap: break-word;
                         }
 
                         .header-questions-label {
-                            color: #777777;
+                            color: fade(@text-color, 70%);
                             font-size: 14px;
                             margin-top: 4px;
                             text-align: right;
-                            text-transform: uppercase;
                             .crop-text-by-size-with-dots(100%, block);
                         }
                     }
@@ -225,11 +225,11 @@
             }
 
             .scroll-hint-container {
-                @hint-color: #8c959a;
+                font-size: 14px;
+                color: @hint-color;
 
                 text-align: center;
                 overflow: hidden;
-                color: @hint-color;
                 // Hiden by default
                 height: 0;
                 transition: height .2s linear;
@@ -241,7 +241,6 @@
                 .text {
                     text-transform: uppercase;
                     margin-bottom: 10px;
-                    font-family: 'RobotoRegular';
                     cursor: pointer;
                     .crop-text-by-size-with-dots(500px);
                 }
@@ -252,6 +251,7 @@
                     height: 40px;
                     margin: 0 auto;
                     cursor: pointer;
+                    transform: rotate3d(0,0,1,180deg);
 
                     .icon {
                         position: absolute;
@@ -262,10 +262,13 @@
                         bottom: 0;
                         border: 1px solid @hint-color;
                         border-radius: 50%;
+                        border-color: fade(@text-color, 50%);
+                        color: fade(@text-color, 50%);
                         .animation(bounce 0.8s ease-in infinite);
 
                         &:before {
-                            .before-image-center(url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAASCAYAAACJgPRIAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjlFNjkzRUM4MjAwMTFFNEI2NzBCRjBCOTQ2RDA4RDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjlFNjkzRUQ4MjAwMTFFNEI2NzBCRjBCOTQ2RDA4RDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2OUU2OTNFQTgyMDAxMUU0QjY3MEJGMEI5NDZEMDhEMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2OUU2OTNFQjgyMDAxMUU0QjY3MEJGMEI5NDZEMDhEMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PkYeRjAAAABxSURBVHjaYqxq62VAA5ZAfBxZgIkBExijC2BTxDCqaDAoCgRiMRzyIPEAkKLtQJwCxIJoCkD8VCDeAVL0A4gnAXE2EPNAFYDoLCCeCJJngQp+AeKpQJwHdUI+EE+DiqM4/D0QzwFiWSCeDeWDAUCAAQBdAhExORFoIwAAAABJRU5ErkJggg=='), 9px, 18px);
+                            font-size: 20px;
+                            line-height: 37px;
                         }
                     }
                 }
@@ -331,5 +334,21 @@
                 display: none !important;
             }
         }
+    }
+}
+
+
+@media (max-width: 400px) {
+    .app-header-content {
+        .logo-wrapper {
+            .main-logo {
+                max-width: 180px;
+            }
+        }
+    }
+    
+    .main-header {
+        height: 60px;
+        padding: 0 10px;
     }
 }

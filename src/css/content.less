@@ -1,14 +1,6 @@
 @import "common";
 
-@default-font: 'RobotoslabRegular';
-@default-font-color: #42515f;
-@default-font-size: 18px;
-@thead-background: #a8c4da;
-@tbody-background: #f3f3f3;
-@bold-font: 'RobotoSlabBold';
 @wrapper-border-radius: 3px;
-@main-color: #43aaa3;
-@mark-font-color: #fff;
 
 .wrapper() {
     text-align: center;
@@ -16,11 +8,11 @@
 
 .default-table() {
     opacity: 0.9;
-    font-size: 16px;
+    font-size: @Normal-size;
 }
 
 .line-height() {
-    line-height: 1.5;
+    line-height: @Normal-lineHeight;
 }
 
 .basic() {
@@ -39,23 +31,11 @@
 }
 
 .clear {
-
     &:after {
         content: "";
         display: block;
         clear: both;
     }
-}
-
-.header(@font-size) {
-    font-size: @font-size;
-    font-family: @bold-font;
-    font-weight: normal;
-    margin: 0;
-
-    .clear;
-    .margin-bottom;
-    .line-height;
 }
 
 .cell() {
@@ -66,22 +46,58 @@
     background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 10px,rgba(243,243,243,1) 10px,rgba(243,243,243,1) 100%);
 }
 
+.normal-styled-text {
+    font-family: @Normal-fontFamily;
+    font-style: @Normal-fontStyle;
+    font-weight: @Normal-fontWeight;
+    font-size: @Normal-size;
+    text-decoration: @Normal-textDecoration;
+    line-height: 1.8;
+}
+
+.h1-styled-text {
+    font-size: @Heading1-size;
+    font-weight: @Heading1-fontWeight;
+    font-family: @Heading1-fontFamily;
+    font-style: @Heading1-fontStyle;
+    text-decoration: @Heading1-textDecoration;
+    line-height: 1.8;
+}
+
+.h2-styled-text {
+    font-size: @Heading2-size;
+    font-weight: @Heading2-fontWeight;
+    font-family: @Heading2-fontFamily;
+    font-style: @Heading2-fontStyle;
+    text-decoration: @Heading2-textDecoration;
+    line-height: 1.8;
+}
+
+.h3-styled-text {
+    font-size: @Heading3-size;
+    font-weight: @Heading3-fontWeight;
+    font-family: @Heading3-fontFamily;
+    font-style: @Heading3-fontStyle;
+    text-decoration: @Heading3-textDecoration;
+    line-height: 1.8;
+}
+
 .styled-content {
 
     /*region MEDIA EDITOR VIDEO*/
     .video-editor {
         position: relative;
-        height: 0;
         width: 100%;
+        height: 0;
         iframe {
-            display: block;
             position: absolute;
+            display: block;
+            width: 100%!important;
+            height: 100%!important;
             top: 0;
             left: 0;
             bottom: 0;
             right: 0;
-            width: 100%!important;
-            height: 100%!important;
             border: 0;
         }
     }
@@ -218,10 +234,6 @@
     /*#endregion CURATION*/
 
     .clear;
-    font-family: @default-font;
-    font-size: @default-font-size;
-    color: @default-font-color;
-    word-wrap: break-word;
 
     &:not(:last-child) {
         margin-bottom: 60px;
@@ -273,7 +285,6 @@
             display: inline-block;
             position: absolute;
             top: 16px;
-            background-color: @main-color;
             margin-left: -22px;
             margin-top: -5px;
             width: 5px;
@@ -283,19 +294,12 @@
     }
 
     a {
-        color: @main-color;
         text-decoration: underline;
         cursor: pointer;
         .line-height;
-
-        &:hover {
-            color: shade(@main-color,10%);
-        }
     }
 
     mark {
-        background-color: @main-color;
-        color: @mark-font-color;
         .line-height;
     }
 
@@ -303,29 +307,15 @@
         .line-height;
     }
 
-    h1 {
-        .header(24px);
-    }
-
-    h2 {
-        .header(22px);
-    }
-
-    h3 {
-        .header(20px);
-    }
-
 
     u {
         text-decoration: none;
-        border-bottom: 1px solid @default-font-color;
         .line-height;
     }
 
     cite {
         border-left-style: solid;
         border-left-width: 4px;
-        border-left-color: @main-color;
         display: block;
         padding-left: 18px;
         margin: 20px 0 20px 10px;
@@ -398,7 +388,6 @@
             display: inline-table;
 
             caption {
-                font-family: @bold-font;
                 margin: 15px;
             }
 
@@ -409,11 +398,6 @@
 
             thead {
                 .default-table;
-                font-family: @bold-font;
-
-                th {
-                    background: @thead-background;
-                }
 
                 tr {
 
@@ -477,16 +461,6 @@
 
             tbody {
                 .default-table;
-
-                th {
-                    font-family: @bold-font;
-                    color: @main-color;
-                    background-color: @tbody-background;
-                }
-
-                td {
-                    background-color: @tbody-background;
-                }
             }
 
             td, th {
@@ -494,7 +468,6 @@
                 .border-box;
                 border: none;
                 text-align: left;
-                background: @tbody-background;
             }
 
             tr + tr {
@@ -555,6 +528,170 @@
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+.styled-content {
+    .normal-styled-text;
+    color: @text-color;
+
+    h1 {
+        .h1-styled-text;
+        margin: 0;
+        color: @Heading1-color;
+        background-color: @Heading1-textBackgroundColor;
+
+        mark {
+            .h1-styled-text;
+        }
+    }
+
+    h2 {
+        .h2-styled-text;
+        color: @Heading2-color;
+        background-color: @Heading2-textBackgroundColor;
+
+        mark {
+            .h2-styled-text;
+        }
+    }
+
+    h3 {
+        .h3-styled-text;
+        color: @Heading3-color;
+        background-color: @Heading3-textBackgroundColor;
+
+        mark {
+            .h3-styled-text;
+        }
+    }
+
+    p {
+        .normal-styled-text;
+        color: @Normal-color;
+        background-color: @Normal-textBackgroundColor;
+    }
+
+    a {
+        color: @links-color;
+        font-family: @links-fontFamily;
+        font-style: @links-fontStyle;
+        font-weight: @links-fontWeight;
+        font-size: @links-size;
+        text-decoration: @links-textDecoration;
+        background-color: @links-textBackgroundColor;
+        line-height: 1.8;
+
+        &:hover {
+            color: shade(@links-color,10%);
+        }
+    }
+
+    cite {
+        border-left-color: @main-color;
+        color: @Quote-color;
+        font-family: @Quote-fontFamily;
+        font-style: @Quote-fontStyle;
+        font-weight: @Quote-fontWeight;
+        font-size: @Quote-size;
+        text-decoration: @Quote-textDecoration;
+        background-color: @Quote-textBackgroundColor;
+        line-height: 1.8;
+
+        &:before, &:after {
+            color: @Quote-color;
+        }
+    }
+
+    mark {
+        color: @Highlighted-color;
+        font-family: @Highlighted-fontFamily;
+        font-style: @Highlighted-fontStyle;
+        font-weight: @Highlighted-fontWeight;
+        font-size: @Highlighted-size;
+        line-height: 1.8;
+        text-decoration: @Highlighted-textDecoration;
+        background-color: @Highlighted-textBackgroundColor;
+    }
+
+    u {
+        border-bottom: 1px solid @text-color;
+    }
+
+    .table-wrapper {
+        color: @Normal-color;
+        font-family: @Normal-fontFamily;
+        font-style: @Normal-fontStyle;
+        font-weight: @Normal-fontWeight;
+        line-height: 1.8;
+        font-size: @Normal-size;
+        text-decoration: @Normal-textDecoration;
+
+        table {
+
+            thead {
+                th {
+                    background-color: fade(@secondary-color, 50%);
+                }
+
+                + caption {
+                    + tbody {
+                        tr {
+                            &:first-child {
+                                td, th {
+                                    background: linear-gradient(rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0) 2px, fade(@secondary-color, 10%) 2px, fade(@secondary-color, 10%) 100%);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                + tbody {
+                    tr {
+                        &:first-child {
+                            td, th {
+                                background: linear-gradient(rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0) 2px, fade(@secondary-color, 10%) 2px,fade(@secondary-color, 10%) 100%);
+                            }
+                        }
+                    }
+                }
+            }
+
+            tbody {
+                td {
+                    background-color: fade(@secondary-color, 10%);
+                }
+            }
+
+            tr {
+                + tr {
+                    td, th {
+                        background: linear-gradient(rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0) 2px, fade(@secondary-color, 10%) 2px, fade(@secondary-color, 10%) 100%);
+                    }
+                }
+            }
+        }
+    }
+
+    ul, ol {
+        li {
+            color: @Normal-color;
+            font-family: @Normal-fontFamily;
+            font-style: @Normal-fontStyle;
+            font-weight: @Normal-fontWeight;
+            font-size: @Normal-size;
+            line-height: 1.8;
+            text-decoration: @Normal-textDecoration;
+        }
+    }
+
+    ul {
+        li {
+            &:before {
+                background-color: @main-color;
+                top: @Normal-size - 2;
             }
         }
     }

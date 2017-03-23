@@ -19,19 +19,20 @@
             <div class="color-ball blue">&nbsp;</div>
             <div class="color-ball yellow">&nbsp;</div>
         </div>
-        <div ng-controller="ImagePreviewController as preview">
-            <div class="overlay-container" ng-style="{'display' : preview.visible? 'block': 'none'}">
+        <div class="image-preview-container" ng-controller="ImagePreviewController as preview">
+            <div class="overlay-container"  ng-class="{'visible': preview.visible}" tabindex="-1" keydown="{ 27:{ handler: preview.forceHide } }" focus="preview.visible">
                 <div class="overlay" ng-click="preview.hide()">
                 </div>
                 <div class="center-containter">
                     <div class="center">
                         <div class="center-content">
-                            <div class="image-containter">
+                            <div class="image-container">
                                 <div class="image-wrapper" image-fullscreen-preview ng-transclude>
                                     <image-loader url="preview.imageUrl" width="preview.width" height="preview.height"></image-loader>
                                 </div>
-                                <div class="overlay-close-button-container">
-                                    <a class="overlay-close-button" ng-click="preview.hide()"></a>
+                                <div class="overlay-close-button" ng-click="preview.hide()">
+                                    <span class="overlay-close-button-icon material-icons">clear</span>
+                                    <span class="overlay-close-button-title">esc</span>
                                 </div>
                             </div>
                         </div>
@@ -185,6 +186,8 @@
     <script src="app/directives/droppable.js"></script>
     <script src="app/directives/background.js"></script>
     <script src="app/directives/blankInput.js"></script>
+    <script src="app/directives/keydown.js"></script>
+    <script src="app/directives/focus.js"></script>
     <script src="app/directives/blankSelect.js"></script>
     <script src="app/directives/styledContent.js"></script>
     <script src="app/directives/entireHeight.js"></script>
@@ -249,7 +252,8 @@
     <script src="app/modules/bootstrapping/tasks/readPublishSettings.js" type="text/javascript"></script>
     <script src="app/modules/bootstrapping/tasks/preloadImages.js" type="text/javascript"></script>
     <script src="app/modules/bootstrapping/tasks/preloadHtml.js" type="text/javascript"></script>
-    <script src="app/modules/bootstrapping/tasks/authentication.js" type="text/javascript"></script>
+    <script src="app/modules/bootstrapping/tasks/authentication.js" type="text/javascript"></script> 
+    <script src="app/modules/bootstrapping/tasks/fixIEScroll.js" type="text/javascript"></script>
     <script src="app/modules/bootstrapping/starter.js" type="text/javascript"></script>
 
     <!-- endbuild -->

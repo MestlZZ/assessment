@@ -1,16 +1,10 @@
 ﻿@import "common";
 
-@question-index-font: 'TwCenMTCondensed';
-@question-title-font: 'RobotoslabRegular';
-
-@question-index-color: #f16462;
-@question-title-color: #222222;
-
 .questions-container {
     position: relative;
     display: block;
     width: 100%;
-    background-color: #fff;
+    background-color: @content-body-color;
 
     .without-intro & {
         padding-top: 70px;
@@ -25,6 +19,10 @@
 }
 
 .question {
+    @question-title-text-color: @Heading2-color;
+    @question-number-border-color: fade(@text-color, 10%);
+    @question-number-color: @main-color;
+
     position: relative;
     margin-bottom: 100px;
 
@@ -34,39 +32,40 @@
     }
 
     .question-title {
-        color: @question-title-color;
-        font-family: @question-title-font;
-        font-size: 22px;
-        font-weight: normal;
-        padding: 10px 0 10px 60px;
-        margin: 0 0 18px 0;
+        padding: 18px 0 10px 60px;
+        margin: 0 0 2px 0;
         position: relative;
         word-wrap: break-word;
+        .h2-styled-text;      
+
+        color: @question-title-text-color;
 
         .index {
-            .border-box();
-            border-right: 1px solid #91a4af;
-            color: @question-index-color;
-            direction: rtl;
-            display: inline-block;
-            font-family: @question-index-font;
-            font-size: 50px;
-            left: 0;
-            padding-right: 5px;
             position: absolute;
-            top: 0;
-            white-space: nowrap;
+            display: inline-block;
+            direction: rtl;
             width: 45px;
+            padding-right: 5px;
+            top: 0;
+            left: 0;
+            font-size: 40px;
+            font-weight: 300;
+            white-space: nowrap;            
+            border-right: 1px solid @question-number-border-color;
+
+            color: @main-color;
+            .border-box();
         }
     }
 
     .question-content {
-        margin: 0 0 50px;
+        margin: 0 0 28px;
         padding-left: 60px;
     }
 
     .question-body {
         margin-bottom: 10px;
+        margin-top: 20px;
     }
 
     .answers {
@@ -89,7 +88,7 @@
         height: 100%;
         vertical-align: top;
         width: 50%;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
 
         &:first-child {
             padding-right: 10px;
@@ -121,7 +120,7 @@
     text-align: center;
 
     .button {
-        max-width: 650px;
+        max-width: 415px;
         min-width: 400px;
-}
+    }
 }

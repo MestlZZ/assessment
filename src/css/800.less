@@ -19,9 +19,13 @@ html, body {
         font-size: 18px;
     }
 
+    p {
+        font-size: 16px;
+    }
+
     figure.image-wrapper {
-        float: none !important;
         margin: 30px 0 30px !important;
+        float: none !important;
     }
 
     .hotspotOnImage figure.image-wrapper {
@@ -34,11 +38,12 @@ html, body {
 }
 
 .question {
-    .single-select-text, .multiple-select-text, .statements {
+    .single-select-text, .multiple-select-text {
         padding-left: 0;
 
         .answer-pair {
             display: block;
+            padding-left: 0;
         }
 
         .answer-container {
@@ -51,6 +56,12 @@ html, body {
 
             &:last-child {
                 padding-left: 0;
+            }
+
+            .answer {
+                & > label {
+                    font-size: 16px;
+                }
             }
         }
     }
@@ -70,11 +81,20 @@ html, body {
     }
 
     .text-matching-table-wrapper,
-    .open-question,
     .draggables,
     .template-content,
-    .ranking-text {
+    .ranking-text,
+    .scenario-question {
         padding-left: 0;
+    }
+
+    
+    .open-question {
+        padding-left: 0;
+
+        .open-question-icon {
+            left: 3px;
+        }
     }
 
     .dropspot-container {
@@ -133,35 +153,16 @@ html, body {
                 }
             }
         }
-    }
-}
 
-.summary {
-    .summary-header {
-        .summary-header-content {
-            .summary-buttons {
-                .flex-direction(column);
+        .content-container {
+             .content-wrapper { 
+                 padding-left: 50px;
+                 padding-right: 50px;
 
-                .summary-button-container {
-                    .summary-retry-notification-container {
-                        max-width: 100%;
-                        margin-top: 7px;
-
-                        .summary-retry-notification {
-                            max-width: 100%;
-                        }
-                    }
-
-                    .summary-button {
-                        width: 100%;
-                        max-width: 100%;
-                    }
-
-                    + .summary-button-container {
-                        margin: 50px 0 0;
-                    }
+                 .content.styled-content {
+                    padding-bottom: 0;
                 }
-            }
+             }
         }
     }
 }

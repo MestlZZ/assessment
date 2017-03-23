@@ -25,6 +25,14 @@
                 updatePreviewImageSize($element);
             });
 
+            scope.$watch('preview.visible', function() {
+                if(scope.preview.visible) {
+                    $('body').css('overflow', 'hidden');
+                } else {                    
+                    $('body').css('overflow', 'auto');
+                }
+            });
+
             scope.$on('$destroy', unbindEvents);
 
             function unbindEvents() {

@@ -5,7 +5,77 @@
     src: url(./font/Custom-Icons.woff) format('woff');
 }
 
-[class^="icon-"], [class*=" icon-"] {
+@font-face {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    src: url(./font/MaterialIcons-Regular.woff) format('woff');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+@icon-checkMark-content: "\e900";
+@icon-eye-content: "\e901";
+@icon-eyeLock-content: "\e902";
+@icon-mail-content: "\e903";
+@icon-name-content: "\e904";
+@icon-password2-content: "\e905";
+@icon-correctCheck-content: "\e906";
+@icon-incorrectCross-content: "\e907";
+@icon-upArrow-content: "\e909";
+@icon-google-content: "\e90a";
+@icon-facebook-content: "\e90b";
+@icon-twitter-content: "\e90c";
+@icon-user-content: "\e90d";
+@icon-allDevices-content: "\e90e";
+@icon-noConnection-content: "\e90f";
+@icon-password-content: "\e910";
+@icon-linkedin-content: "\e911";
+@icon-link-content: "\e912";
+@icon-google2-content: "\e913";
+@icon-facebook2-content: "\e914";
+@icon-linkedin2-content: "\e915";
+@icon-email-content: "\e916";
+@icon-lock-content: "\e917";
+@icon-envelope-content: "\e918";
+@icon-move-content: "\e919";
+@icon-attention-content: "\e91a";
+@icon-home-content: "\e91b";
+@icon-education-content: "\e91c";
+@icon-arrowDown-content: "\e91d";
+@icon-arrowUp-content: "\e91e";
+@icon-dots-content: "\e91f";
+@icon-arrowDownInCircle-content: "\e920";
+@icon-keyboard-content: "\e921";
+@icon-arrowDownBold-content: "\e923";
+@icon-searchPlus-content: "\e924";
+@icon-arrowRight-content: "\e925";
+@icon-survey-content: "\e99c";
+
+.icon() {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'Custom Icons' !important;
     speak: none;
@@ -19,54 +89,165 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.icon-attention:before {
-    content: "\e900";
+
+.icon(@name) {
+    .icon();
+
+    &::before {
+      @content-variable: "icon-@{name}-content";
+
+      content: @@content-variable; 
+    }
 }
-.icon-home:before {
-    content: "\e901";
-}
-.icon-envelope:before {
-    content: "\e910";
-}
-.icon-lock:before {
-    content: "\e90f";
-}
-.icon-link:before {
-    content: "\e90a";
-}
-.icon-all_devices:before {
-    content: "\e906";
-}
-.icon-user:before {
-    content: "\e905";
-}
-.icon-email:before {
-    content: "\e90e";
-}
-.icon-no_connection:before {
-    content: "\e907";
-}
-.icon-password:before {
-    content: "\e908";
-}
-.icon-linkedin:before {
-    content: "\e909";
-}
-.icon-google:before {
-    content: "\e902";
-}
-.icon-facebook:before {
-    content: "\e903";
-}
-.icon-twitter:before {
-    content: "\e904";
-}
-.icon-google2:before {
-    content: "\e90b";
-}
-.icon-facebook2:before {
-    content: "\e90c";
-}
-.icon-linkedin2:before {
-    content: "\e90d";
+
+.icon {
+    .icon();
+
+    &.check-mark::before {
+      content: @icon-checkMark-content;
+    }
+
+    &.eye::before{
+      content: @icon-eye-content;
+    }
+
+    &.eye-lock::before{
+      content: @icon-eyeLock-content;
+    }
+
+    &.mail::before{
+      content: @icon-mail-content;
+    }
+
+    &.name::before{
+      content: @icon-name-content;
+    }
+
+    &.password2::before {      
+      content: @icon-password2-content;
+    }
+
+    &.correct-check::before {      
+      content: @icon-correctCheck-content;
+    }
+
+    &.incorrect-cross::before {
+      content: @icon-incorrectCross-content;
+    }
+
+    &.up-arrow::before {
+      content: @icon-upArrow-content;
+    }
+
+    &.google::before {
+      content: @icon-google-content;
+    }
+
+    &.facebook::before {
+      content: @icon-facebook-content;
+    }
+
+    &.twitter::before {
+      content: @icon-twitter-content;
+    }
+
+    &.user::before {
+      content: @icon-user-content;
+    }
+
+    &.all-devices::before {
+      content: @icon-allDevices-content;
+    }
+
+    &.no-connection::before {
+      content: @icon-noConnection-content;
+    }
+
+    &.password::before {
+      content: @icon-password-content;
+    }
+
+    &.linkedin::before {
+      content: @icon-linkedin-content;
+    }
+
+    &.link::before {
+      content: @icon-link-content;
+    }
+
+    &.google2::before {
+      content: @icon-google2-content;
+    }
+
+    &.facebook2::before {
+      content: @icon-facebook2-content;
+    }
+
+    &.linkedin2::before {
+      content: @icon-linkedin2-content;
+    }
+
+    &.email::before {
+      content: @icon-email-content;
+    }
+
+    &.lock::before {
+      content: @icon-lock-content;
+    }
+
+    &.envelope::before {
+      content: @icon-envelope-content;
+    }
+
+    &.move::before {
+      content: @icon-move-content;
+    }
+
+    &.attention::before {
+      content: @icon-attention-content;
+    }
+
+    &.home::before {
+      content: @icon-home-content;
+    }
+
+    &.education::before {
+      content: @icon-education-content;
+    }
+
+    &.arrow-down::before {
+      content: @icon-arrowDown-content;
+    }
+
+    &.arrow-up::before {
+      content: @icon-arrowUp-content;
+    }
+
+    &.dots::before {
+      content: @icon-dots-content;
+    }
+
+    &.arrow-down-in-circle::before {
+      content: @icon-arrowDownInCircle-content;
+    }
+
+    &.keyboard::before {
+      content: @icon-keyboard-content;
+    }
+
+    &.arrow-down-bold::before {
+      content: @icon-arrowDownBold-content;
+    }
+
+    &.search-plus::before {
+      content: @icon-searchPlus-content;
+    }
+
+    &.arrow-right::before {
+      content: @icon-arrowRight-content;
+    }
+
+    &.survey::before {
+      content: @icon-survey-content;
+    }
 }

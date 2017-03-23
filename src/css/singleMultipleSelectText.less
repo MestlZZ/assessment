@@ -1,0 +1,134 @@
+﻿@import "common";
+
+.question {
+    .single-select-text, .multiple-select-text {
+        .border-box();
+        @answer-background-color: fade(@text-color, 5%);
+        @answer-hover-background-color: fade(@main-color, 10%);
+        @answer-hover-border-color: fade(@main-color, 50%);
+        @answer-checked-background-color: fade(@main-color, 20%);
+
+        @answer-checked-icon-background-color: @main-color;
+        @answer-checked-icon-border-color: @main-color;
+        @answer-checked-icon-color: @button-text-color;
+        .answer-pair{
+            padding-left: 60px;
+            .border-box();
+        }
+
+        .answer {
+            position: relative;
+            border-radius: 5px;
+            z-index: 10;
+
+            cursor: pointer;
+            background-color: @answer-background-color;
+            transition: background .2s linear;
+
+            .checkbox, .radio {
+                .normal-styled-text;                
+                .border-box();
+                .break-word();
+                cursor: pointer;
+                display: inline-block;
+                padding: 14px 20px 14px 70px;
+                position: relative;
+                width: 100%;
+                line-height: 1.8;
+                
+                &::before {   
+                    z-index: 10;                 
+                    height: 40px;
+                    left: 15px;
+                    margin-top: -20px;
+                    position: absolute;
+                    top: 50%;
+                    width: 40px;
+                    color: transparent;
+                    background-color: @content-body-color;
+                    box-shadow: 0 0 1px 1px fade(black, 10%) inset;
+                    transition: box-shadow .2s linear;
+                }
+
+                &::after{ 
+                    z-index: 11;
+                }
+            }
+
+            .checkbox {
+                &.icon.check-mark{        
+                    font-family: @Normal-fontFamily !important;
+                }
+
+                &::before {
+                    border-radius: 3px;
+                    line-height: 40px;
+                    font-size: 18px;
+                    padding-left: 2px;
+                    text-align: center;
+                    
+                    -moz-transition: border-color .2s, background-color .2s, color .2s;
+                    -o-transition: border-color .2s, background-color .2s, color .2s;
+                    -webkit-transition: border-color .2s, background-color .2s, color .2s;
+                    transition: border-color .2s, background-color .2s, color .2s;
+
+                    .border-box();
+                }
+            }
+            
+            .radio {
+                &::before {
+                    content: "";
+                    border-radius: 50%;
+                }
+
+                &::after{
+                    content: "";
+                    display: block;
+                    height: 20px;
+                    left: 25px;
+                    margin-top: -10px;
+                    position: absolute;
+                    top: 50%;
+                    width: 20px;
+                    border-radius: 50%;
+                    background: transparent;
+                    transition: background .2s linear;
+                }
+            }
+
+            &:hover {
+                background: none repeat scroll 0 0 @answer-hover-background-color;
+
+                .checkbox, .radio {
+                    &::before {
+                        box-shadow: 0 0 1px 1px @answer-hover-border-color inset;
+                    }
+                }
+            }
+
+            &.checked {
+                background-color: @answer-checked-background-color;
+
+                .checkbox {
+                    &::before {
+                        font-family: 'Custom Icons';
+                        box-shadow: none;
+                        background-color: @answer-checked-icon-background-color;
+                        color: @answer-checked-icon-color;
+                    }
+                }
+
+                .radio{
+                    &::before{
+                        box-shadow: 0 0 1px 1px @answer-checked-icon-border-color inset;
+                    }
+
+                    &::after{
+                        background-color: @answer-checked-icon-background-color;
+                    }
+                }
+            }
+        }
+    }
+}

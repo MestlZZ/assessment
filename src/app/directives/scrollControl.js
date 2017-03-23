@@ -8,12 +8,12 @@
         return ua.indexOf('ipod') !== -1 || ua.indexOf('iphone') !== -1 || ua.indexOf('ipad') !== -1 || ua.indexOf('android') !== -1;
     }
 
-    scrollControl.$inject = ['$routeParams', '$location', '$timeout'];
+    scrollControl.$inject = ['$routeParams', '$location', '$timeout', '$window'];
 
-    function scrollControl($routeParams, $location, $timeout) {
+    function scrollControl($routeParams, $location, $timeout, $window) {
         return {
             restrict: 'A',
-            link: function ($scope, $element) {
+            link: function ($scope, $element) {    
                 if (isMobileDevice()) {
                     subscribeToMobileEvents($scope, $element);
                 } else if ($scope.assessment.hasIntroductionContent) {
@@ -118,16 +118,21 @@
                     return;
                 }
 
-                if (questionsReached) {
+                if (questionsReached && !introGone) {
                     broadcastAssessmentStartedEvent($scope);
 
                     $introduction
                         .css('top', scrollableHeight)
-                        .css('position', 'absolute');
+                        .css('position', 'absolute')
+                        .css('z-index', 0);
                 } else {
                     $introduction
                         .css('top', 0)
                         .css('position', 'fixed');
+
+                    if(introGone) {
+                        $introduction.css('z-index', -1);
+                    }
                 }
 
                 $introductionContent.scrollTop(windowScrollTop);

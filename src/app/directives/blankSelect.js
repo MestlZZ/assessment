@@ -57,13 +57,15 @@
         $element.addClass('active');
 
         var
+            containerTop = ($element.offset().top + $element.outerHeight() + 1),
             container = $('<div />')
                 .addClass('select-container')
                 .css({
                     position: 'absolute',
-                    left: ($element.offset().left - 10) + 'px',
-                    top: ($element.offset().top + $element.outerHeight() + 13) + 'px',
-                    width: ($element.outerWidth() + 20) + 'px'
+                    left: ($element.offset().left - 37) + 'px',
+                    top: (containerTop + 10) + 'px',
+                    width: ($element.outerWidth() + 40) + 'px',
+                    opacity: 0
                 })
                 .append($('<ul/>')
                     .addClass('unstyled')
@@ -84,15 +86,15 @@
                         }).value())
                 )
                 .appendTo('.container')
-        //.hide()
-        //.slideToggle('fast')
-        ;
+                .animate({top: containerTop, opacity: 1}, 200);
 
         var handler = function () {
-            container.remove();
-            $element.removeClass('active');
-            $('html').off('click', handler);
-            $(window).off('resize', handler);
+            container.animate({ opacity: 0 }, 200, function(){                
+                container.remove();
+                $element.removeClass('active');
+                $('html').off('click', handler);
+                $(window).off('resize', handler);
+            });
         };
 
         setTimeout(function () {
