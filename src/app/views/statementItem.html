@@ -5,8 +5,11 @@
             <span class="text-wrapper">
                 {{ '[statement question true text]' | translate }}
             </span>
-        </button><!--
-     --><button class="button statement-button false" ng-class="{ selected: statement.state === false }" ng-click="question.setFalseState(statement)">
+        </button>
+        <span class="statement-separator">            
+            {{ '[statement question or text]' | translate }}
+        </span>
+        <button class="button statement-button false" ng-class="{ selected: statement.state === false }" ng-click="question.setFalseState(statement)">
             <span class="text-wrapper">
                 {{ '[statement question false text]' | translate }}
             </span>

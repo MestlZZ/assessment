@@ -1,15 +1,15 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('bootstrapping').factory('preloadImages', preloadImages);
+    angular.module('bootstrapping').factory('preloadImagesTask', preloadImagesTask);
 
-    preloadImages.$inject = ['$q'];
+    preloadImagesTask.$inject = ['$q'];
     
     var imagesStack = [
         'css/img/main-background.jpg'
     ];
 
-    function preloadImages($q) {
+    function preloadImagesTask($q) {
         var promises = [];
 
         imagesStack.forEach(function (url) {

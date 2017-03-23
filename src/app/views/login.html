@@ -2,32 +2,39 @@
     <span class="main-background"></span>
     <div class="login-overlay"></div>
     <div class="login-container">
-        <div ng-if="login.allowToSkip" class="login-skip-button" login-leave="skip"></div>
+        <div ng-if="login.allowToSkip" class="login-skip-button" login-leave="skip">
+            <div class="login-skip-button-icon material-icons">clear</div>
+        </div>
         <div ng-if="login.allowToSkip" class="login-skip-text-wrapper">
-            <span class="login-skip-text-arrow"></span>
+            <span class="login-skip-text-arrow icon arrow-right"></span>
             <span class="login-skip-text">{{ '[tracking and tracing skip step]' | translate }}</span>
         </div>
         <div class="login-wrapper">
-            <div class="login-content">
-                <div class="course-title-container">
-                    <span class="questions-count">{{ login.questionsLength }} {{ '[questions]' | translate }}</span>
-                    <div class="course-title" course-title>{{ login.courseTitle }}</div>
+            <div class="login-header-container">
+                <span class="questions-count">{{ login.questionsLength }} {{ '[questions]' | translate }}</span>
+                <div class="course-title" course-title>{{ login.courseTitle }}</div>
+                <div class="login-tooltip-container">
+                    <div class="login-tooltip-container-arrow"></div>
+                    <div class="text">{{ '[tracking and tracing hint]' | translate }}</div>
+                    <div ng-if ="login.xAPIEnabled" class="text small">{{ '[tracking and tracing subhint]' | translate }}</div>
                 </div>
+            </div>
+            <div class="login-content">                
                 <div class="login-form-container">
-                    <div class="login-tooltip-container">
-                        <div class="text">{{ '[tracking and tracing hint]' | translate }}</div>
-                        <div ng-if ="login.xAPIEnabled" class="text small">{{ '[tracking and tracing subhint]' | translate }}</div>
-                    </div>
                     <div class="login-input-container name">
-                        <input type="text" ng-model="login.username" ng-class="{ 'error': !login.usernameIsValid() && login.usernameModified }" ng-blur="login.markUsernameAsModified()" placeholder="{{ '[tracking and tracing name field]' | translate }}" class="login-input" />
+                        <input type="text" ng-model="login.username" ng-class="{ 'error': !login.usernameIsValid() && login.usernameModified, 'empty': !login.username.length }" ng-blur="login.markUsernameAsModified()" class="login-input" />
+                        <i class="login-input-container-icon icon name"></i>
+                        <span class="login-input-container-hint">{{ '[login name field]' | translate }}</span>
                         <span class="login-error-text" ng-style="{ visibility: !login.usernameIsValid() && login.usernameModified ? 'visible' : 'hidden' }">{{ '[tracking and tracing name is not valid]' | translate }}</span>
                     </div>
                     <div class="login-input-container email">
-                        <input type="text" ng-model="login.email" ng-class="{ 'error': !login.emailIsValid() && login.emailModified }" ng-blur="login.markEmailAsModified()" placeholder="{{ '[tracking and tracing email field]' | translate }}" class="login-input" />
+                        <input type="email" ng-model="login.email" ng-class="{ 'error': !login.emailIsValid() && login.emailModified, 'empty': !login.email.length }" ng-blur="login.markEmailAsModified()" class="login-input" />
+                        <i class="login-input-container-icon icon mail"></i>
+                        <span class="login-input-container-hint">{{ '[login email field]' | translate }}</span>
                         <span class="login-error-text" ng-style="{ visibility: !login.emailIsValid() && login.emailModified ? 'visible' : 'hidden' }">{{ '[tracking and tracing email is not valid]' | translate }}</span>
                     </div>
                     <div class="login-form-submit-container">
-                        <button class="button large emphasize primary" login-leave="submit">
+                        <button class="button primary" login-leave="submit">
                             <span class="wrapper">
                                 <span class="text">{{ '[confirn your name and email]' | translate }}</span>
                                 <span>*</span>

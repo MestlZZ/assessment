@@ -16,7 +16,7 @@
             </div>
             <div class="summary-buttons">
                 <div class="summary-button-container" ng-if="!summary.singleAttempt">
-                    <button class="summary-button button large emphasize" ng-disabled="!summary.canTryAgain" ng-class="{ primary:!summary.reachMasteryScore, default:summary.reachMasteryScore, disabled: !summary.canTryAgain }" ng-click="summary.tryAgain()">
+                    <button class="summary-button button" ng-disabled="!summary.canTryAgain" ng-class="{ primary:!summary.reachMasteryScore, default:summary.reachMasteryScore, disabled: !summary.canTryAgain }" ng-click="summary.tryAgain()">
                         <span class="text-wrapper">
                             {{ '[try again]' | translate }}
                         </span>
@@ -26,10 +26,11 @@
                         <span class="summary-retry-notification" ng-show="summary.canTryAgain">
                             {{ '[attempts remaining]' | translate }}&nbsp;{{ summary.availableAttemptCount }}
                         </span>
+                        <i class="summary-retry-notification-icon"></i>
                     </div>
                 </div>
                 <div class="summary-button-container">
-                    <button class="summary-button button large emphasize" ng-class="{ primary:summary.reachMasteryScore || !summary.canTryAgain || summary.singleAttempt, default:!summary.reachMasteryScore }" ng-click="summary.finish()">
+                    <button class="summary-button button" ng-class="{ primary:summary.reachMasteryScore || !summary.canTryAgain || summary.singleAttempt, default:!summary.reachMasteryScore, attempts: summary.attemptsLimited }" ng-click="summary.finish()">
                         <span class="text-wrapper">
                             {{ '[finish course]' | translate }}
                         </span>
@@ -46,6 +47,7 @@
                     <div class="question-number-cell">
                         <div class="question-number-container">
                             <span class="question-number">{{ $index + 1 | leadingZeros: 2 }}</span>
+                            <i class="question-icon"></i>
                         </div>
                     </div>
                     <div class="question-title-cell">{{ question.title }}</div>

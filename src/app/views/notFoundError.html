@@ -1,30 +1,29 @@
 ﻿<div class="error-page-container">
+    <span class="main-background"></span>
+    <div class="error-page-overlay"></div>
     <header class="app-header">
         <img class="main-logo" ng-src="{{ notFoundError.logoUrl }}">
         <span class="vertical-align-helper"></span>
     </header>
     <div class="error-container" ng-init="scrollToTop()" entire-height>
         <div class="error-content-container not-found-error">
-            <div class="error-content-wrapper">
-                <div class="error-title-container">
-                    404
-                </div>
-                <div class="error-message-container">
-                    <span class="error-message">
-                        {{ '[page not found message]' | translate }}
-                    </span>
-                    <div class="error-button-container">
-                        <button ng-click="notFoundError.goHome()" class="button large emphasize default">
-                            <span class="text-wrapper">
-                                {{ '[page not found home button]' | translate }}
-                            </span>
-                        </button>
-                    </div>
-                </div>
+            <div class="error-code-container">
+                404
             </div>
-        </div>
-        <div class="error-footer-container">
-            <div class="error-footer"></div>
+            <span class="error-title-container">
+                {{ '[page not found title]' | translate }}
+            </span>
+            <div class="error-message-container">
+                {{ '[page not found message]' | translate }}
+            </div>
+            <div class="error-button-container">
+                <button ng-click="notFoundError.goHome()" class="button primary">
+                    <i class="icon home"></i>
+                    <span class="text-wrapper">
+                        {{ '[page not found home button]' | translate }}
+                    </span>
+                </button>
+            </div>
         </div>
     </div>
 </div>
