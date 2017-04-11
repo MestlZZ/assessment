@@ -15,9 +15,6 @@
     opacity: 0.97;
     z-index: 100;
 
-    background-color: @content-body-color;
-    border-bottom: 1px solid fade(@text-color, 10%);
-
     @media (max-width: 1499px) {
         .questions-reached & {
             visibility: visible;
@@ -52,8 +49,7 @@
 
     .timer {
         position: relative;
-        display: table-cell;
-        width: 160px;
+        display: inline-block;
         vertical-align: middle;
         z-index: 1;
     }
@@ -73,12 +69,6 @@
         width: 100%;
         height: 100%;
         overflow: auto;
-        border-bottom: 1px solid fade(@text-color, 10%);
-
-        .intro-gone & {
-            background-color: #fff;
-            border-bottom: none;
-        }
 
         .header {
             position: absolute;
@@ -105,8 +95,7 @@
             }
         }
 
-        @scroll-hint-height: 77px;
-        @hint-color: fade(@text-color, 70%);
+        @scroll-hint-height: 100px;
 
         .content-container {
             .display-flex;
@@ -119,24 +108,8 @@
 
             @shadow-block-height: 20px;
 
-            .limitation-border() {
-                content: '';
-                position: absolute;
-                display: inline-block;
-                height: @shadow-block-height;
-                left: 20px;
-                right: 20px;
-                opacity: 1;
-                z-index: 1;
-
-                background-color: fade(@text-color, 10%);
-                transition: opacity 0.2s linear;
-            }
-
             &:before {
-                .limitation-border;
                 top: -(@shadow-block-height - 1);
-                box-shadow: 0 7px 15px -9px @text-color;
 
                 .at-top-position& {
                     opacity: 0;
@@ -144,9 +117,7 @@
             }
 
             &:after {
-                .limitation-border;
                 bottom: -(@shadow-block-height - 1);
-                box-shadow: 0 -9px 15px -9px @text-color;
 
                 .at-bottom-position& {
                     opacity: 0;
@@ -162,30 +133,25 @@
                 .header-title-container {
                     text-align: center;
                     margin-bottom: 65px;
-                    font-family: @main-font-fontFamily;
 
                     .header-title-wrapper {
                         display: inline-block;
                         max-width: 100%;
-                        color: @text-color;
 
                         .header-assessment-label {
                             text-align: left;
                             font-size: 14px;
-                            color: fade(@text-color, 70%);
                             font-weight: normal;
                             .crop-text-by-size-with-dots(100%, block);
                         }
 
                         .header-assessment-title {
-                            color: @text-color;
                             font-weight: 600;
                             font-size: 34px;
                             word-wrap: break-word;
                         }
 
                         .header-questions-label {
-                            color: fade(@text-color, 70%);
                             font-size: 14px;
                             margin-top: 4px;
                             text-align: right;
@@ -226,7 +192,6 @@
 
             .scroll-hint-container {
                 font-size: 14px;
-                color: @hint-color;
 
                 text-align: center;
                 overflow: hidden;
@@ -240,7 +205,6 @@
 
                 .text {
                     text-transform: uppercase;
-                    margin-bottom: 10px;
                     cursor: pointer;
                     .crop-text-by-size-with-dots(500px);
                 }
@@ -249,7 +213,7 @@
                     position: relative;
                     width: 40px;
                     height: 40px;
-                    margin: 0 auto;
+                    margin: -5px auto 0;
                     cursor: pointer;
                     transform: rotate3d(0,0,1,180deg);
 
@@ -260,10 +224,7 @@
                         height: 35px;
                         left: 0;
                         bottom: 0;
-                        border: 1px solid @hint-color;
                         border-radius: 50%;
-                        border-color: fade(@text-color, 50%);
-                        color: fade(@text-color, 50%);
                         .animation(bounce 0.8s ease-in infinite);
 
                         &:before {
@@ -278,7 +239,6 @@
 }
 
 .touch {
-
     .introduction-container {
         position: relative !important;
         height: auto !important;
@@ -307,7 +267,6 @@
 
     .main-header {
         visibility: visible;
-        box-shadow: 0 0 30px -10px #323232;
 
         .button-container {
             display: table-cell;
@@ -324,7 +283,7 @@
         }
 
         .timer {
-            display: table-cell;
+            display: inline-block;
         }
     }
 
@@ -342,7 +301,7 @@
     .app-header-content {
         .logo-wrapper {
             .main-logo {
-                max-width: 180px;
+                max-width: 150px;
             }
         }
     }

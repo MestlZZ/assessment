@@ -94,7 +94,7 @@
                 if (xApiSettings.allowedVerbs) {
                     for (key in self.statements) {
                         if (self.statements.hasOwnProperty(key)) {
-                            self.statements[key] = xApiSettings.allowedVerbs.indexOf(key) > -1;
+                            self.statements[key] = ~xApiSettings.allowedVerbs.indexOf(key);
                         }
                     }
                 }
@@ -477,19 +477,20 @@
 
         return api.init().then(function () {
             var manifest = api.getManifest(),
-                settings = api.getSettings();
+                settings = api.getSettings(),
+                defaultSettings = manifest.defaultTemplateSettings;
 
-            that.trackingData.init(settings.xApi);
-            that.masteryScore.init(settings.masteryScore);
-            that.languages.init(manifest.languages, settings.languages);
-            that.timer.init(settings.timer);
-            that.questionPool.init(settings.questionPool);
-            that.answers.init(settings.answers);
-            that.attempt.init(settings.attempt);
-            that.assessmentMode.init(settings.assessmentMode);
-            that.showGivenAnswers.init(settings.showGivenAnswers);
+            that.trackingData.init($.extend(true, {}, defaultSettings.xApi, settings.xApi));
+            that.masteryScore.init(settings.masteryScore || defaultSettings.masteryScore);
+            that.languages.init(manifest.languages, $.extend(true, {}, defaultSettings.languages, settings.languages));
+            that.timer.init($.extend(true, {}, defaultSettings.timer, settings.timer));
+            that.questionPool.init($.extend(true, {}, defaultSettings.questionPool, settings.questionPool));
+            that.answers.init($.extend(true, {}, defaultSettings.answers, settings.answers));
+            that.attempt.init($.extend(true, {}, defaultSettings.attempt, settings.attempt));
+            that.assessmentMode.init(settings.assessmentMode || defaultSettings.assessmentMode);
+            that.showGivenAnswers.init(settings.showGivenAnswers || defaultSettings.showGivenAnswers);
 
-            currentSettings = getCurrentSettings(settings);
+            currentSettings = getCurrentSettings($.extend(true, {}, defaultSettings, settings));
 
             $scope.$watch('assessmentMode.mode', function (mode, prevMode) {
                 that.assessmentMode.attemptsSettings[prevMode] = that.attempt.getData();

@@ -1,14 +1,6 @@
 @import "common";
 
 .error-page-container {
-    @error-code-text-color: fade(@main-color, 90%);
-    @error-title-text-color: @incorrect-color;
-    @error-message-text-color: @text-color;
-
-    @error-noaccess-icon-color: @main-color;
-    @error-noaccess-icon-background-color: fade(@main-color, 10%);
-    @error-noacces-background-color: @content-body-color;
-
     .error-container {
         .display-flex;
         .flex-direction(column);
@@ -30,18 +22,6 @@
                 content: '';
                 display: block;
                 clear: both;
-            }
-
-            .error-code-container {
-                color: @error-code-text-color;
-            }
-
-            .error-title-container {
-                color: @error-title-text-color; 
-            }
-
-            .error-message-container {
-                color: @error-message-text-color;
             }
 
             .button {             
@@ -81,26 +61,24 @@
                 }
             }
 
-            &.noaccess-error {        
+            &.noaccess-error {   
+                position: relative;     
                 width: 600px;     
                 margin-top: 100px;
                 padding: 100px 0 45px;
                 border-radius: 5px;
-                box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
                 overflow: hidden;
-                
-                background: @error-noacces-background-color;
+
                 .border-box;   
 
                 .noaccess-icon {
+                    position: relative;
                     text-align: center;
 
                     .icon.attention {
                         position: relative;
                         top: -50px;
                         font-size: 40px;
-
-                        color: @error-noaccess-icon-color;
 
                         &:after {
                             content: '';
@@ -111,13 +89,13 @@
                             left: 50%;
                             border-radius: 50%;
 
-                            background-color: @error-noaccess-icon-background-color;
                             transform: translate(-50%, -50%);
                         }
                     }
                 }
 
                 .error-message-container {
+                    position: relative;
                     padding: 5px 45px 0;
                     line-height: 26px;
                     font-size: 22px;
@@ -129,6 +107,7 @@
                 }
 
                 .error-button-container {
+                    position: relative;
                     margin-top: 40px;
                     text-align: center;
                 }

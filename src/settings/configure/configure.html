@@ -77,7 +77,7 @@
                                                         <span>Show a subset of</span>
                                                         <div data-trigger="spinner" class="spinner" spinner spinner-value="questionPool.subsetSize">
                                                             <a class="spinner-button spinner-down" data-spin="down" disable-drag-and-drop></a>
-                                                            <input type="text" maxlength="3" id="questionPool.subsetSize" class="content-text-input" data-rule="quantity" data-max="999" data-min="1" number ng-model="questionPool.subsetSize">
+                                                            <input autocomplete="off" type="text" maxlength="3" id="questionPool.subsetSize" class="content-text-input" data-rule="quantity" data-max="999" data-min="1" number ng-model="questionPool.subsetSize">
                                                             <a class="spinner-button spinner-up" data-spin="up" disable-drag-and-drop></a>
                                                             <div class="spiner-seperator"></div>
                                                         </div>
@@ -180,7 +180,7 @@
                                             <div class="option-title">Hours</div>
                                             <div data-trigger="spinner" class="spinner" spinner spinner-value="timer.hours">
                                                 <a class="spinner-button spinner-down" data-spin="down" disable-drag-and-drop></a>
-                                                <input type="text" maxlength="2" id="timer.hours" class="content-text-input" data-rule="quantity" data-max="99" data-min="0" number ng-model="timer.hours">
+                                                <input autocomplete="off" type="text" maxlength="2" id="timer.hours" class="content-text-input" data-rule="quantity" data-max="99" data-min="0" number ng-model="timer.hours">
                                                 <a class="spinner-button spinner-up" data-spin="up" disable-drag-and-drop></a>
                                                 <div class="spiner-seperator"></div>
                                             </div>
@@ -190,7 +190,7 @@
                                             <div class="option-title">Minutes</div>
                                             <div data-trigger="spinner" class="spinner" spinner spinner-value="timer.minutes">
                                                 <a class="spinner-button spinner-down" data-spin="down" disable-drag-and-drop></a>
-                                                <input type="text" maxlength="2" id="timer.minutes" class="content-text-input" data-rule="quantity" data-max="59" data-min="0" number ng-model="timer.minutes">
+                                                <input autocomplete="off" type="text" maxlength="2" id="timer.minutes" class="content-text-input" data-rule="quantity" data-max="59" data-min="0" number ng-model="timer.minutes">
                                                 <a class="spinner-button spinner-up" data-spin="up" disable-drag-and-drop></a>
                                                 <div class="spiner-seperator"></div>
                                             </div>
@@ -200,7 +200,7 @@
                                             <div class="option-title">Seconds</div>
                                             <div data-trigger="spinner" class="spinner" spinner spinner-value="timer.seconds">
                                                 <a class="spinner-button spinner-down" data-spin="down" disable-drag-and-drop></a>
-                                                <input type="text" maxlength="2" id="timer.seconds" class="content-text-input" data-rule="quantity" data-max="59" data-min="0" number ng-model="timer.seconds">
+                                                <input autocomplete="off" type="text" maxlength="2" id="timer.seconds" class="content-text-input" data-rule="quantity" data-max="59" data-min="0" number ng-model="timer.seconds">
                                                 <a class="spinner-button spinner-up" data-spin="up" disable-drag-and-drop></a>
                                                 <div class="spiner-seperator"></div>
                                             </div>
@@ -225,7 +225,7 @@
                                                         <span>Limit number of attempts:</span>
                                                         <div data-trigger="spinner" class="spinner" spinner spinner-value="attempt.limit">
                                                             <a class="spinner-button spinner-down" data-spin="down" disable-drag-and-drop></a>
-                                                            <input type="text" maxlength="3" class="content-text-input" data-rule="quantity" data-max="100" data-min="1" number ng-model="attempt.limit">
+                                                            <input autocomplete="off" type="text" maxlength="3" class="content-text-input" data-rule="quantity" data-max="100" data-min="1" number ng-model="attempt.limit">
                                                             <a class="spinner-button spinner-up" data-spin="up" disable-drag-and-drop></a>
                                                             <div class="spiner-seperator"></div>
                                                         </div>
@@ -304,7 +304,7 @@
                                 <div class="preview-row">
                                     <label for="lrsUrl" class="preview-label">LRS URL</label>
                                     <div class="preview-col">
-                                        <input class="preview-text-input" id="lrsUrl" type="text" ng-model="trackingData.lrsUrl" ng-disabled="!trackingData.customLrsEnabled()" />
+                                        <input autocomplete="off" class="preview-text-input" id="lrsUrl" type="text" ng-model="trackingData.lrsUrl" ng-disabled="!trackingData.customLrsEnabled()" />
                                     </div>
                                 </div>
                                 <div class="preview-row small">
@@ -322,13 +322,13 @@
                                 <div class="preview-row">
                                     <label for="lapLogin" class="preview-label">LAP login</label>
                                     <div class="preview-col">
-                                        <input class="preview-text-input" type="text" id="lapLogin" ng-model="trackingData.lapLogin" ng-disabled="!trackingData.credentialsEnabled()" />
+                                        <input autocomplete="off" class="preview-text-input" type="text" id="lapLogin" ng-model="trackingData.lapLogin" ng-disabled="!trackingData.credentialsEnabled()" />
                                     </div>
                                 </div>
                                 <div class="preview-row">
                                     <label for="lapPassword" class="preview-label">LAP password</label>
                                     <div class="preview-col">
-                                        <input class="preview-text-input" type="text" id="lapPassword" ng-model="trackingData.lapPassword" ng-disabled="!trackingData.credentialsEnabled()" />
+                                        <input autocomplete="off" class="preview-text-input" type="text" id="lapPassword" ng-model="trackingData.lapPassword" ng-disabled="!trackingData.credentialsEnabled()" />
                                     </div>
                                 </div>
                                 <div class="preview-row large">
@@ -426,7 +426,7 @@
                             <div class="settings-cell">
                                 <div data-trigger="spinner" class="spinner" spinner spinner-value="masteryScore.value">
                                     <a class="spinner-button spinner-down" data-spin="down" disable-drag-and-drop></a>
-                                    <input type="text" maxlength="3" id="masteryScore.value" class="content-text-input" data-rule="quantity" data-max="100" data-min="0" number ng-model="masteryScore.value">
+                                    <input autocomplete="off" type="text" maxlength="3" id="masteryScore.value" class="content-text-input" data-rule="quantity" data-max="100" data-min="0" number ng-model="masteryScore.value">
                                     <a class="spinner-button spinner-up" data-spin="up" disable-drag-and-drop></a>
                                     <div class="spiner-seperator"></div>
                                 </div>
@@ -462,7 +462,7 @@
                                     <td class="choose-language-table-text-wrapper">
                                         <div class="input-wrapper">
                                             <div class="choose-language-table-input-wrapper" ng-if="languages.selectedLanguage.isEditable">
-                                                <input type="text" class="choose-language-table-input" ng-model="languages.selectedLanguage.resources[key]" />
+                                                <input autocomplete="off" type="text" class="choose-language-table-input" ng-model="languages.selectedLanguage.resources[key]" />
                                                 <span class="edit-icon"></span>
                                             </div>
                                             <span ng-if="!languages.selectedLanguage.isEditable">{{ languages.selectedLanguage.resources[key] }}</span>

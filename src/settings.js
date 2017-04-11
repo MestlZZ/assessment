@@ -1,7 +1,4 @@
 {
-    "logo": {
-        "url": ""
-    },
     "xApi": {
         "enabled": false,
         "selectedLrs": "custom",
@@ -22,12 +19,6 @@
     },
     "languages": {
         "selected": "en"
-    },
-    "background": {
-        "image": {
-            "src": null,
-            "type": "original"
-        }
     },
     "timer": {
         "enabled": false,

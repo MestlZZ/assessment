@@ -2,9 +2,6 @@
 
 .image-preview-container {
     .overlay-container {
-        @image-overlay-color: @content-body-color;
-        @image-close-icon-color: @text-color;
-
         position: fixed;
         display: none;
         top: 0;
@@ -20,12 +17,10 @@
         .overlay {
             position: absolute;
             top: 0;
-            bottom: 0;
+            bottom: 0; 
             left: 0;
             right: 0;
             opacity: 0.9;
-            
-            background-color: @image-overlay-color;
         }
 
         .center-containter {
@@ -63,7 +58,6 @@
                             cursor: pointer;
                             opacity: .7;
 
-                            color: @image-close-icon-color;
                             transition: opacity .2s linear;
 
                             &:hover {

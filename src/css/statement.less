@@ -1,25 +1,7 @@
 ﻿@import "common";
 
 .question {
-
     .statements {
-        @statement-background-color: transparent;
-        @statement-text-color: @text-color;
-
-        @statement-selected-background-color: fade(@main-color, 10%);
-
-        @statement-line-color: fade(@text-color, 10%);
-
-        @statement-button-background-color: fade(@text-color, 10%);
-        @statement-button-text-color: fade(@text-color, 90%);
-        @statement-button-separator-color: fade(@text-color, 70%);
-
-        @statement-button-hover-background-color: fade(@text-color, 30%);
-        @statement-button-hover-text-color: @text-color;
-
-        @statement-button-selected-background-color: @main-color;
-        @statement-button-selected-text-color: @button-text-color;
-
         .statements-list {
             padding-left: 60px;
 
@@ -40,7 +22,6 @@
                         margin-left: -200px;
                         bottom: -1px;
                         position: absolute;
-                        background: @statement-line-color;
                     }
                 }
             }
@@ -56,21 +37,14 @@
             .flex-direction(column);
             .justify-content(space-between);
             border-radius: 2px;
-            background: @statement-background-color;
             vertical-align: top;
             transition: background @transition-settings, box-shadow @transition-settings;
 
-            &.true, &.false {
-                background: @statement-selected-background-color;
-            }
-
             .title {
                 .flex(1 1 auto);
-                .h3-styled-text;
+                padding: 20px 24px 35px;
                 font-weight: normal;
                 text-align: center;
-                padding: 20px 24px 35px;
-                color: @statement-text-color;
                 word-wrap: break-word;
             }
 
@@ -85,7 +59,6 @@
 
                 .statement-separator{
                     font-size: 14px;
-                    color: @statement-button-separator-color;
                     margin: 0 10px;
                 }
 
@@ -97,24 +70,12 @@
                     font-size: 16px;
                     font-weight: 600;
                     line-height: 44px;
-                    color: @statement-button-text-color;
-                    background-color: @statement-button-background-color;
                     cursor: pointer;
                     transition: background @transition-settings, box-shadow @transition-settings, opacity @transition-settings, color @transition-settings;
                     .crop-text-by-size-with-dots(215px);
 
                     .text-wrapper {
                         padding: 0 20px;
-                    }
-
-                    &:hover{
-                        background-color: @statement-button-hover-background-color;
-                        color: @statement-button-hover-text-color;
-                    }
-
-                    &.selected{
-                        background-color: @statement-button-selected-background-color;
-                        color: @statement-button-selected-text-color;
                     }
                 }
             }

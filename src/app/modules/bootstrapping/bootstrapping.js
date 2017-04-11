@@ -3,25 +3,22 @@
 
     angular.module('bootstrapping', []).run(runBlock);
 
-    runBlock.$inject = ['$q', 'detectDeviceTask', 'loadFontsTask', 'readSettingsTask', 'readPublishSettingsTask', 'preloadImagesTask', 'preloadHtmlTask', 'authenticationTask', 'fixIEScrollTask'];
+    runBlock.$inject = ['$q', 'detectDeviceTask', 'readSettingsTask', 'preloadHtmlTask', 'authenticationTask', 'fixIEScrollTask'];
 
-    function runBlock($q, detectDeviceTask, loadFontsTask, readSettingsTask, readPublishSettingsTask, preloadImagesTask, preloadHtmlTask, authenticationTask, fixIEScrollTask) {
+    function runBlock($q, detectDeviceTask, readSettingsTask, preloadHtmlTask, authenticationTask, fixIEScrollTask) {
         var tasks = {
             'detectDeviceTask': detectDeviceTask,
-            'loadFontsTask': loadFontsTask,
+            'fixIEScrollTask': fixIEScrollTask,
             'readSettings': readSettingsTask,
-            'readPublishSettings': readPublishSettingsTask,
             'authenticationTask': authenticationTask,
-            'preloadHtmlTask': preloadHtmlTask,
-            'preloadImagesTask': preloadImagesTask,
-            'fixIEScrollTask': fixIEScrollTask
+            'preloadHtmlTask': preloadHtmlTask
         };
 
         $q.all(tasks).then(function (data) {
             var bootstrapModules = ['assessment'],
                 settings = data.readSettings,
-                publishSettings = data.readPublishSettings.publishSettings,
-                publishModules = data.readPublishSettings.publishModules,
+                publishSettings = settings.publishSettings,
+                publishModules = publishSettings.modules,
                 user = data.authenticationTask,
                 preloadHtmls = data.preloadHtmlTask;
 
@@ -34,7 +31,7 @@
 
             angular.module('assessment').config(['$routeProvider', 'settingsProvider', 'htmlTemplatesCacheProvider', 'userProvider', '$translateProvider',
                 function ($routeProvider, settingsProvider, htmlTemplatesCacheProvider, userProvider, $translateProvider) {
-                    settingsProvider.setSettings(settings);
+                    settingsProvider.setSettings(settings.templateSettings);
                     userProvider.set(user);
                     if (publishModules && publishModules.length > 0) {
                         _.each(publishModules, function (module) {
@@ -45,10 +42,15 @@
                     }
                     htmlTemplatesCacheProvider.set(preloadHtmls);
 
-                    configureTranslateProvider($translateProvider, settings);
+                    $translateProvider
+                        .translations('xx', settings.translations)
+                        .preferredLanguage('xx');
+
+                    window.WebFontLoader && WebFontLoader.load(settings.templateSettings.fonts, settings.manifest, publishSettings);
+                    window.LessProcessor && LessProcessor.load(settings.templateSettings.colors, settings.templateSettings.fonts);
                 }]);
 
-            if (!settings || _.isEmpty(settings) || (settings.xApi && settings.xApi.enabled)) {
+            if (!settings || !settings.templateSettings || _.isEmpty(settings.templateSettings) || (settings.templateSettings.xApi && settings.templateSettings.xApi.enabled)) {
                 bootstrapModules.push('assessment.xApi');
             }
 
@@ -67,28 +69,5 @@
 
             angular.bootstrap(document, bootstrapModules);
         });
-
-        function configureTranslateProvider($translateProvider, settings) {
-            var customLanguage = 'xx',
-                defaultLanguage = 'en',
-                customTranslations = {},
-                selectedLanguage = defaultLanguage;
-
-            if (settings && settings.languages) {
-                if (settings.languages.customTranslations) {
-                    customTranslations = settings.languages.customTranslations;
-                }
-                if (settings.languages.selected) {
-                    selectedLanguage = settings.languages.selected;
-                }
-            }
-
-            $translateProvider
-                .useStaticFilesLoader({ prefix: 'lang/', suffix: '.json' })
-                .translations(customLanguage, customTranslations)
-                .fallbackLanguage(defaultLanguage)
-                .preferredLanguage(selectedLanguage);
-        }
-
-    }
+    }    
 }());

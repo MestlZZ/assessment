@@ -1,5 +1,8 @@
-﻿<div class="main-container" ng-class="{'without-intro': !assessment.hasIntroductionContent}" scroll-control>
-    <span class="main-background" ng-show="assessment.hasIntroductionContent"></span>
+﻿<div class="main-container" ng-class="{'without-intro': !assessment.hasIntroductionContent}" scroll-control>    
+    <main-background class="main-background" ng-show="assessment.hasIntroductionContent">
+        <div class="main-background-image"></div>
+        <div class="main-background-overlay"></div>
+    </main-background>
     <introduction class="introduction-container at-top-position" ng-show="assessment.hasIntroductionContent">
         <div class="introduction-wrapper">
             <header class="app-header header">
@@ -40,7 +43,10 @@
         </div>
     </introduction>
     <header class="app-header main-header">
-        <span class="main-background"></span>
+        <main-background class="main-background">
+            <div class="main-background-image"></div>
+            <div class="main-background-overlay"></div>
+        </main-background>
         <div class="app-header-content">
             <span class="logo-wrapper">
                 <img class="main-logo" ng-src="{{ assessment.logoUrl }}" />
@@ -57,6 +63,10 @@
         </div>
     </header>
     <questions class="questions-container">
+        <secondary-background class="secondary-background">
+            <div class="secondary-background-image"></div>
+            <div class="secondary-background-overlay"></div>
+        </secondary-background>
         <div class="questions-wrapper">
             <ul class="unstyled">
                 <li class="question" ng-repeat="question in assessment.questions">

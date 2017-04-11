@@ -1,56 +1,23 @@
 ﻿@import 'common';
 
 .drag-and-drop-text {
-    @draggables-border-color: fade(@text-color, 10%);
-    @draggables-font: @Normal-fontFamily;
-    @draggables-text-color: fade(@text-color, 50%);    
-    @draggables-active-border-color: fade(@main-color, 50%);
-
-    @droptext-backround-color: mix(@content-body-color, @text-color, 95%);
-    @droptext-font: @draggables-font;
-    @droptext-border-color: mix(@content-body-color, @text-color, 80%);
-    @droptext-color: @text-color;    
-    @droptext-icon-color: fade(@text-color, 50%);
-
-    @droptext-hover-background-color: mix(@content-body-color, @main-color, 80%);
-    @droptext-hover-border-color: mix(@content-body-color, @main-color, 60%);
-    @droptext-hover-icon-color: fade(@text-color, 80%);
-
-    @droptext-drag-background-color: mix(@content-body-color, @main-color, 80%);
-    @droptext-drag-border-color: mix(@content-body-color, @main-color, 60%);
-    @droptext-drag-shadow-color: fade(#000, 20%);
-
-    @dropspot-background-color: fade(#152e40, 60%);
-    @dropspot-shadow-color: fade(#000, 25%);
-
-    @dropspot-help-color: fade(#fff, 70%);
-
     .draggables {
         position: relative;
         margin-top: 20px;
         margin-bottom: 20px;
         padding-left: 48px;
-        border: 2px dashed transparent;
+        border-width: 2px;
+        border-style: dashed;
         border-radius: 5px;
         overflow: hidden;
         z-index: 1;
 
-        color: transparent;
-        border-color: @draggables-border-color;
         transition: border .2s linear, color .2s linear;
 
-        &.hover{
-            border-color: @draggables-active-border-color;
-        }
-
         &.empty {
-            color: @draggables-text-color;
-            font: 18px/70px @draggables-font;
+            font-size: 18px;
+            line-height: 70px;
             text-align: center;
-        }
-
-        &.active{
-            color: transparent;
         }
 
         .empty-draggable-area {
@@ -72,31 +39,10 @@
         position: relative;
         padding-left: 5px;
         padding-right: 10px;
-        border-bottom: 2px solid @droptext-border-color;
         border-radius: 5px;
         z-index: 1;
 
-        background-color: @droptext-backround-color;
         transition: border .2s linear, background .2s linear, box-shadow .2s linear;
-
-        &.ui-draggable-dragging {
-            border-color: @droptext-drag-border-color;
-            background-color: @droptext-drag-background-color;                
-            box-shadow: 0px 2px 5px @droptext-drag-shadow-color;
-
-            .draggable-text-icon{                
-                color: @droptext-hover-icon-color;
-            }
-        }
-
-        &:hover{
-            border-color: @droptext-hover-border-color;
-            background-color: @droptext-hover-background-color;
-
-            .draggable-text-icon{
-                color: @droptext-hover-icon-color;
-            }
-        }
 
         .draggable-text-icon{                
             position: absolute;
@@ -105,7 +51,6 @@
             margin-left: 5px;
             font-size: 18px;
 
-            color: @droptext-icon-color;
             transition: color .2s linear;
         }
 
@@ -117,8 +62,8 @@
             min-width: 35px;
             max-width: 475px;
             padding-left: 20px;
-            font: 18px/48px @droptext-font;
-            color: @droptext-color;
+            font-size: 18px;
+            line-height: 48px;
         }
     }
 
@@ -147,7 +92,6 @@
             height: 50px;
             border-radius: 5px;
 
-            background-color: @dropspot-background-color;
             transition: min-width .2s linear, min-height .2s linear;
 
             &::before {
@@ -157,8 +101,6 @@
                 margin-top: -7px;
                 margin-left: -7px;
                 font-size: 19px;
-                
-                color: @dropspot-help-color;
             }
 
             &.active {

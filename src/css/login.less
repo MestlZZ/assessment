@@ -1,15 +1,11 @@
 @import "common";
 
 .login {
-    @login-overlay-background-color: fade(@content-body-color, 80%);
-
     position: relative;
     height: 100%;
 
     .main-background {
         opacity: 1;
-
-        color: @text-color;
     }
 
     .circular-loader {
@@ -17,34 +13,14 @@
     }
 
     .login-container {
-        @login-container-background-color: shade(@content-body-color, 10%);
-        @login-container-shadow-color: fade(#000, 20%);
-        
-        @login-question-counter-text-color: fade(@text-color, 70%); 
-
-        @login-tooltip-background-color: fade(@secondary-color, 20%);
-        @login-tooltip-text-color: fade(@text-color, 70%);
-            
-        @login-skip-button-background-color: shade(@content-body-color, 10%);
-        @login-skip-button-hover-background-color: shade(@content-body-color, 15%);
-        @login-skip-button-border-color: fade(#000, 15%);
-        @login-skip-button-shadow-color: fade(#000, 20%);
-        @login-skip-button-icon-color: fade(@text-color, 50%);
-
-        @login-skip-text-color: fade(@text-color, 50%);
-        @login-skip-link-color: fade(@text-color, 70%);
-        @login-skip-link-hover-color: @text-color;
-        
         position: relative;
         height: 100%;
         max-width: 640px;
         min-width: 560px;
         z-index: 10;
 
-        background-color: @login-container-background-color;
-        box-shadow: 1px 0px 3px 0px @login-container-shadow-color;
-
         .login-wrapper {       
+            position: relative;
             display: flex;
             width: 433px;
             height: 100%;
@@ -62,7 +38,6 @@
                     font-size: 14px;
                     font-weight: normal;
 
-                    color: @login-question-counter-text-color;
                     .crop-text-by-size-with-dots(250px);
                 }
 
@@ -72,8 +47,6 @@
                     font-size: 32px;
                     font-weight: 600;
                     text-align: center;
-
-                    color: @text-color;
                 }
 
                 .login-tooltip-container {
@@ -87,9 +60,6 @@
                     font-size: 16px;
                     font-weight: 600;
                     border-radius: 10px;
-                    
-                    background-color: @login-tooltip-background-color;
-                    color: @login-tooltip-text-color;
                     .border-box();
 
                     .text {
@@ -119,8 +89,6 @@
                             left: 3px;
                             top: -8px;
 
-                            background-color: @login-tooltip-background-color;  
-
                             -webkit-transform: rotate(45deg);
                             transform: rotate(45deg);   
                         }
@@ -129,24 +97,6 @@
             }
 
             .login-content {
-                @login-input-icon-color: fade(@text-color, 30%);
-                @login-input-text-color: @text-color;
-                @login-input-hint-text-color: fade(@text-color, 50%);
-                @login-input-underline-color: fade(@text-color, 30%);
-                @login-input-placeholder-color: fade(@text-color, 50%);
-                @login-input-background-color: transparent;
-
-                @login-input-hover-icon-color: @main-color;
-                @login-input-hover-underline-color: @main-color;
-                @login-input-hover-shadow-color: @main-color;
-
-                @login-input-error-icon-color: @incorrect-color;
-                @login-input-error-underline-color: @incorrect-color;
-                @login-input-error-shadow-color: @incorrect-color;
-
-                @login-error-text-color: @incorrect-color;
-                @login-description-text-color: fade(@text-color, 70%);
-
                 padding: 0 11px;
 
                 .login-form-container {
@@ -175,8 +125,6 @@
                             bottom: 33px;
                             left: 1px;
                             font-size: 12px;            
-
-                            color: @login-input-icon-color;
                             
                             transition: color .2s linear;
                         }
@@ -187,9 +135,6 @@
                             left: 25px;
                             font-size: 24px;       
                             font-weight: normal;
-                            z-index: -1;
-
-                            color: @login-input-hint-text-color;
                             
                             transition: all .2s linear;
                         }
@@ -201,50 +146,14 @@
                             padding-left: 25px;
                             line-height: 36px;
                             font-size: 24px;
-                            border: 0;
-                            border-bottom: 2px dashed @login-input-underline-color;
                             border-width: 0 0 1px 0;
                             z-index: 1;
-
-                            background-color: @login-input-background-color;
-                            color: @text-color;
 
                             transition: box-shadow .2s linear, border .2s linear;
                             .border-box;
 
-                            &::-webkit-input-placeholder {
-                                color: @login-input-placeholder-color;
-                            }
-
                             &::-moz-placeholder {
-                                color: @login-input-placeholder-color;
                                 opacity: 1;
-                            }
-
-                            &:-ms-input-placeholder {
-                                color: @login-input-placeholder-color;
-                            }
-
-                            &:active, &:focus, &:hover,
-                            &.error:active, &.error:focus,
-                            &.error:hover {
-                                border-bottom-style: solid;
-                                border-bottom-color: @login-input-hover-underline-color !important;
-                                box-shadow: 0px 1px 0px @login-input-hover-shadow-color !important;
-
-                                & ~ .login-input-container-icon{
-                                    color: @login-input-hover-icon-color;
-                                }
-                            }
-
-                            &.error {
-                                border-bottom-style: solid;
-                                border-bottom-color: @login-input-error-underline-color;
-                                box-shadow: 0px 1px 0px @login-input-error-shadow-color;
-                                
-                                & ~ .login-input-container-icon{
-                                    color: @login-input-error-icon-color;
-                                }
                             }
 
                             &:not(.empty),
@@ -261,7 +170,6 @@
                         .login-error-text {
                             font-size: 12px;
 
-                            color: @login-error-text-color;
                             .crop-text-by-size-with-dots(100%);
                         }
                     }
@@ -296,7 +204,6 @@
                         line-height: 20px;
                         font-size: 12px;
 
-                        color: @login-description-text-color;
                         .crop-text-by-size-with-dots-multiline(100%);
                     }
                 }
@@ -308,23 +215,14 @@
             width: 50px;
             height: 50px;
             top: 20px;
-            right: -52px;
+            right: -51px;
             border-left: none;
             border-bottom-right-radius: 10px;
             border-top-right-radius: 10px;
             overflow: hidden;
             cursor: pointer;
-            
-            background-color: @login-skip-button-background-color;            
-            border: 1px solid @login-skip-button-border-color;            
-            box-shadow: inset 1px 0px 3px -1px @login-skip-button-shadow-color;
 
             transition: background .2s linear;
-
-            &:hover {
-                background-color: @login-skip-button-hover-background-color;
-                box-shadow: none;
-            }
 
             .login-skip-button-icon{                
                 width: 100%;
@@ -333,8 +231,6 @@
                 font-size: 28px;
                 text-align: center;
                 vertical-align: middle;
-
-                color: @login-skip-button-icon-color;
             }
         }
 
@@ -345,8 +241,7 @@
             top: 42px;
             right: 15px;
             padding: 10px 15px 0 0;
-            font: 18px Rabiohead, BadScriptRegular;
-            color: @login-skip-text-color;
+            font: 18px Rabiohead;
 
             .login-skip-text-arrow {
                 position: absolute;
@@ -370,13 +265,8 @@
             text-transform: uppercase;
             cursor: pointer;
 
-            color: @login-skip-link-color;
             transition: color .2s linear;
             .crop-text-with-dots;
-
-            &:hover {
-                color: @login-skip-link-hover-color;
-            }
         }
     }
 }

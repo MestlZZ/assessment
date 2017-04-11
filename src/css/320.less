@@ -115,21 +115,11 @@ app-header {
             }
 
             .questions {
-                padding-left: 20px;
-
                 .question-item {
                     .question-number-cell {
-                        width: 65px;
-
                         .question-number-container {
                             .question-number {
-                                left: 0;
                                 font-size: 44px;
-                            }
-
-                            .question-icon {
-                                margin-left: -20px;
-                                margin-top: -1px;
                             }
                         }
                     }
@@ -137,26 +127,6 @@ app-header {
                     .question-title-cell {
                         line-height: normal;
                         font-size: 16px;
-                    }
-
-                    &.correct {
-                        .question-number-cell {
-                            .question-number-container {
-                                .question-icon {
-                                    margin-top: -1px;
-                                }
-                            }
-                        }
-                    }
-
-                    &.survey {
-                        .question-number-cell {
-                            .question-number-container {
-                                .question-icon {
-                                    margin-top: -1px;
-                                }
-                            }
-                        }
                     }
                 }
             }
@@ -187,9 +157,15 @@ app-header {
                         .progress-control-mastery-score{
                             z-index: 101;
                         }
-                        
-                        .progress-control-hint {
-                            display: none;
+
+                        .progress-control-hint {                                                        
+                            width: 35px;
+                            word-wrap: break-word;
+                            max-width: 100px;
+
+                            &.left {                                
+                                margin-left: -75px;
+                            }                          
                         }
                     }
                 }

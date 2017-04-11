@@ -5,27 +5,21 @@
         padding-left: 60px;
 
         .hint-button-container {
+            .unselectable();            
             text-align: center;
 
             .hint-button {
                 position: relative;
                 display: inline-block;
-                min-width: 332px;
+                min-width: 320px;
                 max-width: 100%;
                 padding: 14px 0 11px;
-                border-top: 1px dashed fade(@text-color, 10%);
-                border-bottom: 1px dashed fade(@text-color, 10%);
                 cursor: pointer;
 
-                color: @main-color;
                 transition: border-width 0s ease-in 0.3s, border-color .2s linear;
 
                 .no-touch &:hover {
-                    border-color: fade(@main-color, 70%);
-                    color: @main-color;
-
                     .hint-button-expand-icon{
-                        color: @main-color;
                         transform: translateY(7px);
                     }
                 }
@@ -57,7 +51,6 @@
                     margin-left: -9px;
                     font-size: 10px;
 
-                    color: fade(@text-color, 10%);
                     transition: transform .2s linear, color .2s linear, opacity .2s linear;
                 }
             }
@@ -78,9 +71,6 @@
                     bottom: 0;
                     margin-bottom: -10px;
                     margin-left: -21px;
-                    border-left: 21px solid transparent;
-                    border-right: 21px solid transparent;
-                    border-top: 10px solid @content-body-color;
                     z-index: 10;
 
                     background-image: none;
@@ -95,8 +85,6 @@
         .question-hint {
             position: relative;
             border-radius: 7px 7px 0 0;
-
-            background-color: fade(@text-color, 10%);
 
             .hint-content-container {
                 padding: 100px 30px;
@@ -159,8 +147,6 @@
                             font-size: 9px;
                             text-align: center;
                             vertical-align: bottom;
-                            
-                            color: @button-text-color;
                         }
                     }
 

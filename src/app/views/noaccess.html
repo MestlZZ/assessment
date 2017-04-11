@@ -1,11 +1,18 @@
 ﻿<div class="error-page-container">
-    <span class="main-background"></span>
+    <main-background class="main-background">
+        <div class="main-background-image"></div>
+        <div class="main-background-overlay"></div>
+    </main-background>
     <header class="app-header">
         <img class="main-logo" ng-src="{{ noAccess.logoUrl }}">
         <span class="vertical-align-helper"></span>
     </header>
     <div class="error-container" ng-init="scrollToTop()" entire-height>
         <div class="error-content-container noaccess-error">
+            <secondary-background class="secondary-background">
+                <div class="secondary-background-image"></div>
+                <div class="secondary-background-overlay"></div>
+            </secondary-background>
             <div class="noaccess-icon">
                 <span class="icon attention"></span>
             </div>

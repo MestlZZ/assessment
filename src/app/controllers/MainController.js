@@ -20,7 +20,7 @@
         
         that.title = $rootScope.title = assessment.title;
         that.hasIntroductionContent = assessment.hasIntroductionContent;
-        that.logoUrl = settings.logo.url;
+        that.logoUrl = settings.logoUrl;
         that.mode = settings.assessmentMode;
         that.showGivenAnswers = settings.showGivenAnswers;
 

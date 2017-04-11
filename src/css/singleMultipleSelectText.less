@@ -3,14 +3,7 @@
 .question {
     .single-select-text, .multiple-select-text {
         .border-box();
-        @answer-background-color: fade(@text-color, 5%);
-        @answer-hover-background-color: fade(@main-color, 10%);
-        @answer-hover-border-color: fade(@main-color, 50%);
-        @answer-checked-background-color: fade(@main-color, 20%);
 
-        @answer-checked-icon-background-color: @main-color;
-        @answer-checked-icon-border-color: @main-color;
-        @answer-checked-icon-color: @button-text-color;
         .answer-pair{
             padding-left: 60px;
             .border-box();
@@ -22,31 +15,27 @@
             z-index: 10;
 
             cursor: pointer;
-            background-color: @answer-background-color;
             transition: background .2s linear;
 
-            .checkbox, .radio {
-                .normal-styled-text;                
+            .checkbox, .radio {             
                 .border-box();
                 .break-word();
-                cursor: pointer;
-                display: inline-block;
-                padding: 14px 20px 14px 70px;
                 position: relative;
+                display: inline-block;
                 width: 100%;
+                padding: 14px 20px 14px 70px;
                 line-height: 1.8;
+                cursor: pointer;
                 
                 &::before {   
-                    z-index: 10;                 
+                    position: absolute;
+                    width: 40px;
                     height: 40px;
+                    top: 50%;
                     left: 15px;
                     margin-top: -20px;
-                    position: absolute;
-                    top: 50%;
-                    width: 40px;
-                    color: transparent;
-                    background-color: @content-body-color;
-                    box-shadow: 0 0 1px 1px fade(black, 10%) inset;
+                    z-index: 10;       
+
                     transition: box-shadow .2s linear;
                 }
 
@@ -56,10 +45,6 @@
             }
 
             .checkbox {
-                &.icon.check-mark{        
-                    font-family: @Normal-fontFamily !important;
-                }
-
                 &::before {
                     border-radius: 3px;
                     line-height: 40px;
@@ -84,49 +69,15 @@
 
                 &::after{
                     content: "";
+                    position: absolute;
                     display: block;
+                    width: 20px;
                     height: 20px;
+                    top: 50%;
                     left: 25px;
                     margin-top: -10px;
-                    position: absolute;
-                    top: 50%;
-                    width: 20px;
                     border-radius: 50%;
-                    background: transparent;
                     transition: background .2s linear;
-                }
-            }
-
-            &:hover {
-                background: none repeat scroll 0 0 @answer-hover-background-color;
-
-                .checkbox, .radio {
-                    &::before {
-                        box-shadow: 0 0 1px 1px @answer-hover-border-color inset;
-                    }
-                }
-            }
-
-            &.checked {
-                background-color: @answer-checked-background-color;
-
-                .checkbox {
-                    &::before {
-                        font-family: 'Custom Icons';
-                        box-shadow: none;
-                        background-color: @answer-checked-icon-background-color;
-                        color: @answer-checked-icon-color;
-                    }
-                }
-
-                .radio{
-                    &::before{
-                        box-shadow: 0 0 1px 1px @answer-checked-icon-border-color inset;
-                    }
-
-                    &::after{
-                        background-color: @answer-checked-icon-background-color;
-                    }
                 }
             }
         }

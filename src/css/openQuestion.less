@@ -1,109 +1,32 @@
 ﻿@import "common";
 
 .open-question {
-    @open-question-line-height: 34px;
-    @open-question-text-color: @text-color;
-    @open-question-line-color: fade(@text-color, 10%);
-    @open-question-icon-color: fade(@text-color, 50%);
-    @open-question-placeholder-color: fade(@text-color, 70%);
-
-    @open-question-hover-line-color: fade(@main-color, 80%);
-    @open-question-hover-icon-color: fade(@main-color, 80%);
-    @open-question-hover-placeholder-color: fade(@text-color, 70%);
-
-    @open-question-focus-line-color: @main-color;
-    @open-question-focus-icon-color: @main-color;
-    @open-question-focus-placeholder-color: fade(@text-color, 70%);
-
+    position: relative;
+    padding-left: 60px;
+    padding-bottom: 15px;
+     
     .border-box();
-     padding-left: 60px;
-     padding-bottom: 15px;
-     position: relative;
 
      .open-question-icon{    
         position: absolute;
         left: 63px;
         top: 8px;
-        color: @open-question-icon-color;
+
         transition: color .2s linear;
      }
 
     .edit-field {
-        min-height: 102px;
         width: 100%;
-        .border-box();
-        .normal-styled-text;
+        min-height: 102px;
         padding: 0 26px 0 33px;
         font-size: 18px;
-        line-height: @open-question-line-height;
-        color: @open-question-text-color;
-        -moz-user-select: text;
-        -webkit-user-select: text;
-        user-select: text;
         border: none;
         resize: none;
         outline: none;      
-        background-color: transparent;
-        background-image: -webkit-linear-gradient(transparent, transparent (@open-question-line-height - 1), @open-question-line-color 0px);
-        background-image: -o-linear-gradient(transparent, transparent (@open-question-line-height - 1), @open-question-line-color 0px);
-        background-image: linear-gradient(transparent, transparent (@open-question-line-height - 1), @open-question-line-color 0px);
-        background-size: 100% @open-question-line-height;
-        background-position-y: -4px;        
-        transition: background .2s linear;
 
-        &::-moz-placeholder {
-            color: @open-question-placeholder-color;
-            opacity: 1;
-        }
-
-        &::-webkit-input-placeholder {
-            color: @open-question-placeholder-color;
-            opacity: 1;
-        }
-
-        &:-ms-input-placeholder {
-            color: @open-question-placeholder-color;
-            opacity: 1;
-        }
-
-        &:hover {                    
-            background-image: -webkit-linear-gradient(transparent, transparent (@open-question-line-height - 1), @open-question-hover-line-color 0px);
-            background-image: -o-linear-gradient(transparent, transparent (@open-question-line-height - 1), @open-question-hover-line-color 0px);
-            background-image: linear-gradient(transparent, transparent (@open-question-line-height - 1), @open-question-hover-line-color 0px);
-        
-            &::-moz-placeholder {
-                color: @open-question-hover-placeholder-color;
-                opacity: 1;
-            }
-
-            &::-webkit-input-placeholder {
-                color: @open-question-hover-placeholder-color;
-                opacity: 1;
-            }
-
-            & ~ .open-question-icon{
-                color: @open-question-hover-icon-color;
-            }
-        }
-
-        &:focus {                    
-            background-image: -webkit-linear-gradient(transparent, transparent (@open-question-line-height - 2), @open-question-focus-line-color 0px);
-            background-image: -o-linear-gradient(transparent, transparent (@open-question-line-height - 2), @open-question-focus-line-color 0px);
-            background-image: linear-gradient(transparent, transparent (@open-question-line-height - 2), @open-question-focus-line-color 0px);
-        
-            &::-moz-placeholder {
-                color: @open-question-focus-placeholder-color;
-                opacity: 1;
-            }
-
-            &::-webkit-input-placeholder {
-                color: @open-question-focus-placeholder-color;
-                opacity: 1;
-            }
-
-            & ~ .open-question-icon{
-                color: @open-question-focus-icon-color;
-            }
-        }
+        background-position-y: -4px;    
+        transition: background .2s linear;  
+        .unselectable();
+        .border-box();
     }
 }

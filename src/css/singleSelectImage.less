@@ -3,23 +3,6 @@
 .single-select-image-list {
     @thumbnail-hover-transition: 0.1s ease-out 0.0s;
 
-    @thumbnail-border-color: fade(@text-color, 10%);
-
-    @thumbnail-round-background-color: fade(@main-color, 80%);
-    @thumbnail-round-icon-color: fade(@button-text-color, 80%);
-
-    @thumbnail-icon-border-color: fade(@text-color, 50%);
-    @thumbnail-icon-background-color: @content-body-color;
-    @thumbnail-icon-color: fade(@text-color, 50%);
-
-    @thumbnail-hover-border-color: @main-color;
-    @thumbnail-hover-shadow-color: fade(@main-color, 70%);
-
-    @thumbnail-hover-icon-border-color: @main-color;
-    @thumbnail-hover-icon-color: @main-color;
-
-    @thumbnail-checked-border-color: @thumbnail-hover-border-color;
-
     list-style-type: none;
     text-align: center;
     padding-left: 60px;
@@ -38,9 +21,12 @@
             position: relative;
             display: inline-block;
 
-            &:hover .thumbnail-wrapper {
-                border-color: @thumbnail-hover-border-color;
-                box-shadow: 0px 0px 15px 0px @thumbnail-hover-shadow-color;
+            &.checked {
+                .thumbnail-wrapper {
+                    .thumbnail-selected {
+                        opacity: 1;   
+                    }                    
+                }                
             }
 
             .thumbnail-wrapper {
@@ -50,7 +36,6 @@
                 height: 192px;
                 overflow: hidden;
                 cursor: pointer;
-                border: 2px solid @thumbnail-border-color;
                 border-radius: 8px;
                 transition: box-shadow @thumbnail-hover-transition, border @thumbnail-hover-transition;
 
@@ -64,37 +49,24 @@
                 }
 
                 .thumbnail-selected {
-                    opacity: 0;
                     display: block;
                     position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    border-radius: 50%;
                     width: 64px;
                     height: 64px;
+                    top: 50%;
+                    left: 50%;
                     margin-left: -32px;
                     margin-top: -32px;                    
                     font-size: 20px;
                     line-height: 65px;
-
-                    background-color: @thumbnail-round-background-color;
-                    color: @thumbnail-round-icon-color;
+                    border-radius: 50%;
+                    opacity: 0;
 
                     transition: opacity @thumbnail-hover-transition;
 
                     &::before{                        
                         margin-left: 4px;
                     }
-                }
-            }
-
-            &.checked{
-                .thumbnail-wrapper {
-                    border-color: @thumbnail-checked-border-color;
-                }
-
-                .thumbnail-selected{
-                    opacity: 1;
                 }
             }
 
@@ -125,24 +97,11 @@
                         right: 4px;
                         line-height: 40px;
                         font-size: 19px;
-                        background: @thumbnail-icon-background-color;
-                        border: 3px solid @thumbnail-icon-background-color;
-                        box-shadow: inset 0px 0px 0px 1px @thumbnail-icon-border-color;
-                        color: @thumbnail-icon-color;
 
                         transition: color @thumbnail-hover-transition, box-shadow @thumbnail-hover-transition, border @thumbnail-hover-transition;
 
                         &::before {
                             margin-right: -1px;
-                        }
-                    }
-                }
-
-                &:hover {
-                    .preview-button {
-                        .preview-button-icon {
-                            color: @thumbnail-hover-icon-color;
-                            box-shadow: inset 0px 0px 0px 1px @thumbnail-hover-icon-border-color;
                         }
                     }
                 }

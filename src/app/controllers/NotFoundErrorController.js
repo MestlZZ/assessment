@@ -12,7 +12,7 @@
 
         $rootScope.title = '404 |' + assessment.title;
         
-        that.logoUrl = settings.logo.url;
+        that.logoUrl = settings.logoUrl;
         
         that.goHome = function() {
             $location.path('/');

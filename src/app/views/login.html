@@ -1,7 +1,14 @@
 <div class="login content-size" ng-init="scrollToTop()" entire-height>
-    <span class="main-background"></span>
+    <main-background class="main-background">        
+        <div class="main-background-image"></div>
+        <div class="main-background-overlay"></div>
+    </main-background>
     <div class="login-overlay"></div>
-    <div class="login-container">
+    <div class="login-container">        
+        <secondary-background class="secondary-background">
+            <div class="secondary-background-image"></div>
+            <div class="secondary-background-overlay"></div>
+        </secondary-background>
         <div ng-if="login.allowToSkip" class="login-skip-button" login-leave="skip">
             <div class="login-skip-button-icon material-icons">clear</div>
         </div>
@@ -22,13 +29,13 @@
             <div class="login-content">                
                 <div class="login-form-container">
                     <div class="login-input-container name">
-                        <input type="text" ng-model="login.username" ng-class="{ 'error': !login.usernameIsValid() && login.usernameModified, 'empty': !login.username.length }" ng-blur="login.markUsernameAsModified()" class="login-input" />
+                        <input type="text" ng-model="login.username" ng-model-options="{ allowInvalid: true }" ng-class="{ 'error': !login.usernameIsValid() && login.usernameModified, 'empty': !login.username }" ng-blur="login.markUsernameAsModified()" class="login-input" formnovalidate />
                         <i class="login-input-container-icon icon name"></i>
                         <span class="login-input-container-hint">{{ '[login name field]' | translate }}</span>
                         <span class="login-error-text" ng-style="{ visibility: !login.usernameIsValid() && login.usernameModified ? 'visible' : 'hidden' }">{{ '[tracking and tracing name is not valid]' | translate }}</span>
                     </div>
                     <div class="login-input-container email">
-                        <input type="email" ng-model="login.email" ng-class="{ 'error': !login.emailIsValid() && login.emailModified, 'empty': !login.email.length }" ng-blur="login.markEmailAsModified()" class="login-input" />
+                        <input type="email" ng-model="login.email" ng-model-options="{ allowInvalid: true }" ng-class="{ 'error': !login.emailIsValid() && login.emailModified, 'empty': !login.email }" ng-blur="login.markEmailAsModified()" class="login-input" formnovalidate />
                         <i class="login-input-container-icon icon mail"></i>
                         <span class="login-input-container-hint">{{ '[login email field]' | translate }}</span>
                         <span class="login-error-text" ng-style="{ visibility: !login.emailIsValid() && login.emailModified ? 'visible' : 'hidden' }">{{ '[tracking and tracing email is not valid]' | translate }}</span>

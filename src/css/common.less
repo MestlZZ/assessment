@@ -84,6 +84,11 @@
     align-items: @align;
 }
 
+.align-self(@align) {
+    -webkit-align-self: @align;
+    align-self: @align;
+}
+
 .flex(@flex-value) {
     -ms-flex: @flex-value;
     -webkit-flex: @flex-value;
@@ -126,9 +131,6 @@ ul {
 }
 
 .tooltip-container {
-    @tooltip-text-color: @button-text-color;
-    @tooltip-background-color: @main-color;
-
     position: absolute;
     margin-top: 5px;
     z-index: 100;                      
@@ -143,8 +145,6 @@ ul {
         word-wrap: break-word;
 
         opacity: 0;
-        color: @tooltip-text-color;
-        background-color: @tooltip-background-color;
         transition: opacity linear 0.2s;
 
         &::before {
@@ -155,8 +155,6 @@ ul {
             top: -4.99px;
             border-style: solid;
             border-width: 0 4px 5px;
-            border-color: transparent;
-            border-bottom-color: @tooltip-background-color;
         } 
     }
 
@@ -181,23 +179,6 @@ ul {
 }
 
 .button {
-    @font: @main-font-fontFamily;
-    @background-color: @main-color;
-    @text-color: @button-text-color;
-    @border-color: shade(@main-color, 10%);
-
-    @hover-background-color: shade(@main-color,10%);
-    @hover-text-color: @button-text-color;
-    @hover-border-color: shade(@main-color,10%);
-    
-    @disabled-background-color: transparent;
-    @disabled-text-color: @main-color;
-    @disabled-border-color: shade(@main-color,10%);
-    
-    @default-background-color: transparent;
-    @default-text-color: @main-color;
-    @default-border-color: shade(@main-color,10%);
-
     display: inline-block;
     width: 100%;
     padding: 0;
@@ -206,21 +187,11 @@ ul {
     transition: background @transition-settings, box-shadow @transition-settings;
 
     line-height: 38px;
-    font-family: @font;
     font-size: 16px;
     font-weight: 600;
-    border: 2px solid;
+    border-width: 2px;
+    border-style: solid;
     border-radius: 5px;
-
-    color: @text-color;
-    background-color: @background-color;
-    border-color: @border-color;
-
-    &:not(.disabled):hover, &:not(.disabled):focus { 
-        color: @hover-text-color;
-        background-color: @hover-background-color;
-        border-color: @hover-border-color;
-    }
 
     .icon {
         font-size: 21px;
@@ -242,12 +213,6 @@ ul {
         text-transform: uppercase;
     }
 
-    &.default {
-        color: @default-text-color;
-        background-color: @default-background-color;
-        border-color: @default-border-color;
-    }
-
     &.small {
         width: 250px;
         text-transform: capitalize;
@@ -259,11 +224,7 @@ ul {
         border-radius: 2px;
     }
 
-    &.disabled {        
-        color: @disabled-text-color;
-        background-color: @disabled-background-color;
-        border-color: @disabled-border-color;
-
+    &.disabled {  
         cursor: default;
         opacity: .3;
     }

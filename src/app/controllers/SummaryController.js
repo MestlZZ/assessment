@@ -11,7 +11,7 @@
         var that = this;
         $rootScope.title = 'Summary | ' + assessment.title;
         that.title = assessment.title;
-        that.logoUrl = settings.logo.url;
+        that.logoUrl = settings.logoUrl;
         that.questions = _.chain(assessment.questions).filter(function(question){
             return question.affectProgress || question.isSurvey;
         }).map(function(question){

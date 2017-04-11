@@ -1,27 +1,6 @@
 ﻿@import "common";
 
 .text-matching {
-    @text-matching-source-font: @Normal-fontFamily;
-    @text-matching-source-background-color: fade(@text-color, 5%);
-    @text-matching-source-border-color: fade(@text-color, 20%);
-    @text-matching-source-color: @text-color;
-
-    @text-matching-target-font: @text-matching-source-font;
-    @text-matching-target-shadow-color: rgba(0, 0, 0, .2);
-    @text-matching-target-color: @text-matching-source-color;
-    @text-matching-target-border-color: mix(@content-body-color, @main-color, 60%);
-    @text-matching-target-background-color: mix(@content-body-color, @main-color, 80%);
-    @text-matching-target-icon-color: fade(@text-color, 50%);
-
-    @text-matching-hover-target-border-color: mix(@content-body-color, @main-color, 50%);
-    @text-matching-hover-target-background-color: mix(@content-body-color, @main-color, 70%);
-    @text-matching-hover-target-icon-color: fade(@text-color, 80%);
-
-    @text-matching-help-font: @text-matching-source-font;
-    @text-matching-help-background-color: fade(@secondary-color, 10%);
-    @text-matching-help-border-color: fade(@secondary-color, 70%);
-    @text-matching-help-color: mix(@content-body-color, @secondary-color, 30%);
-
     .block() {
         display: block;
         height: 100%;
@@ -87,12 +66,10 @@
     .text-matching-source-wrapper-inner {
         .border-box();
         .block();
-        background-color: @text-matching-source-background-color;
-        border-color: @text-matching-source-border-color;
+        padding: 15px;
         border-radius: 5px;
         border-style: solid;
         border-width: 1px 1px 2px;
-        padding: 15px;
 
         &::before {
             content: "";
@@ -104,9 +81,7 @@
             left: 100%;
             border-radius: ~'50% 9px 8px 50%/50% 5px 5px 50%';
             margin-top: -13px;
-            background: @content-body-color;
             margin-left: -17px;
-            border: 2px solid @text-matching-source-border-color;
             border-right: none;
         }
     }
@@ -121,7 +96,6 @@
     }
 
     .text-matching-source-text {
-        .normal-styled-text;
         line-height: 30px;
         padding-right: 15px;
         position: relative;
@@ -136,28 +110,12 @@
     .text-matching-target-wrapper-inner {
         .border-box();
         .block();
-        background-color: @text-matching-target-background-color;
-        border-color: @text-matching-target-border-color;
         border-radius: 5px;
         border-style: solid;
         border-width: 1px 1px 2px;
         padding: 15px;
+
         transition: background .2s linear, border .2s linear, box-shadow .2s linear;
-
-        &.ui-draggable-dragging {
-            background-color: @text-matching-hover-target-background-color;
-            border-color: @text-matching-hover-target-border-color;
-            box-shadow: 0 25px 25px -20px @text-matching-target-shadow-color;
-
-            .text-matching-target-text-icon{
-                color: @text-matching-hover-target-icon-color;
-            }
-
-            &::before{                
-                background: @text-matching-hover-target-background-color;
-                border-color: @text-matching-hover-target-border-color;
-            }
-        }
 
         &::before {
             content: "";
@@ -168,9 +126,7 @@
             top: 50%;
             right: 100%;
             border-radius: ~'50% 9px 8px 50%/50% 5px 5px 50%';
-            border: 2px solid @text-matching-target-border-color;
-            margin-top: -13px;
-            background: @text-matching-target-background-color;
+            margin-top: -11px;
             border-right: none;
             transition: background .2s linear, border .2s linear;
         }
@@ -180,8 +136,13 @@
             top: 50%;
             margin-top: -9px;
             font-size: 18px;
-            color: @text-matching-target-icon-color;
             transition: color .2s linear;
+        }
+
+        &.answered {
+            &::before {
+                border: none;
+            }
         }
     }
 
@@ -194,20 +155,13 @@
     }
 
     .text-matching-target-text {
-        color: @text-matching-target-color;
-        font: @text-matching-target-font;
         line-height: 30px;
-        font-size: @Normal-size;
-        font-weight: @Normal-fontWeight;
-        font-style: @Normal-fontStyle;
-        text-decoration: @Normal-textDecoration;
         padding-left: 15px;
         position: relative;
         word-wrap: break-word;
     }
 
     .placeholder {
-
         .placeholder-help-wrapper-outer {
             .border-box();
             border-color: transparent;
@@ -223,7 +177,6 @@
 
         .placeholder-help-wrapper-inner {
             .block();
-            border-color: @text-matching-help-border-color;
             border-radius: 5px;
             border-style: dashed;
             border-width: 1px 1px 1px 0;
@@ -240,13 +193,7 @@
 
         .placeholder-help-text {
             padding: 0 10px;
-            color: @text-matching-help-color;
-            font: @text-matching-help-font;
             line-height: 25px;
-            font-size: @Normal-size;
-            font-weight: @Normal-fontWeight;
-            font-style: @Normal-fontStyle;
-            text-decoration: @Normal-textDecoration;
             text-align: center;
             transition: color .2s linear;
             .crop-text-with-dots();
@@ -261,32 +208,15 @@
             top: 50%;
             right: 100%;
             border-radius: ~'50% 9px 8px 50%/50% 5px 5px 50%';
-            margin-top: -13px;
+            margin-top: -12px;
             background: transparent;
-            border: 2px solid transparent;
             border-right: none;
             transition: background .1s linear;
         }
 
         &.active {
-
             .placeholder-help-wrapper-outer {
                 opacity: 1;
-            }
-
-            &.hover {
-                &:before {             
-                    background: @text-matching-help-background-color;
-                }
-
-                .placeholder-help-wrapper-inner {
-                    border-color: @secondary-color;
-                    background-color: @text-matching-help-background-color;
-
-                    .placeholder-help-text{
-                        color: @secondary-color;
-                    }
-                }
             }
         }
     }

@@ -9,9 +9,12 @@ var
     jscs = require('gulp-jscs'),
 
     less = require('gulp-less'),
-    css = require("gulp-minify-css"),
+    cleanCSS = require('gulp-minify-css'),
     csso = require('gulp-csso'),
     webserver = require('gulp-webserver'),
+    plumber = require('gulp-plumber'),
+    autoprefixer = require('gulp-autoprefixer'),
+    rename = require('gulp-rename'),
 
     uglify = require('gulp-uglify'),
 
@@ -25,8 +28,7 @@ var
     bower = require('gulp-bower'),
 
     output = './.output',
-    buildVersion = +new Date()
-    ;
+    buildVersion = +new Date();
 
 require('jshint-stylish');
 
@@ -81,7 +83,7 @@ function analyzejscs(sources) {
 }
 
 gulp.task('watch', function () {
-    gulp.watch('./src/css/*', ['css']);
+    gulp.watch('./src/css/*', ['process-less']);
 });
 
 gulp.task('build', ['pre-build', 'build-app', 'build-settings', 'build-searchcontent-app'], function () {
@@ -95,12 +97,12 @@ gulp.task('bower', ['clean'], function () {
     return bower({ cmd: 'update' });
 });
 
-gulp.task('css', ['clean', 'bower'], function () {
+gulp.task('process-less', ['clean', 'bower'], function () {
     return gulp.src(['./src/css/font/fonts.less', './src/css/styles.less'])
         .pipe(less())
-        .pipe(css())
+        .pipe(cleanCSS())
         .pipe(csso())
-        .pipe(gulp.dest('./src/css/'));
+        .pipe(gulp.dest('./src/css/'))
 });
 
 gulp.task('assets', ['clean', 'bower'], function () {
@@ -110,7 +112,7 @@ gulp.task('assets', ['clean', 'bower'], function () {
         .pipe(gulp.dest(output + '/css/img'));
 });
 
-gulp.task('pre-build', ['clean', 'bower', 'css', 'assets'], function () {
+gulp.task('pre-build', ['clean', 'bower', 'process-less', 'assets'], function () {
 });
 
 gulp.task('build-app', ['pre-build'], function () {
@@ -121,11 +123,17 @@ gulp.task('build-app', ['pre-build'], function () {
         gulp.src('./src/index.html')
             .pipe(assets)
             .pipe(gulpif('*.js', uglify()))
-            .pipe(gulpif('*.css', css()))
+            .pipe(gulpif('*.css', cleanCSS()))
             .pipe(assets.restore())
             .pipe(useref())
+            .pipe(replace('css/colors.less', 'css/colors.css'))
             .pipe(addBuildVersion())
             .pipe(gulp.dest(output)),
+
+        gulp.src('./src/css/colors.less')
+            .pipe(addBuildVersion())
+            .pipe(rename('colors.css'))
+            .pipe(gulp.dest(output + '/css')),
 
         gulp.src(['./src/css/font/**', '!./src/css/font/*.less'])
             .pipe(gulp.dest(output + '/css/font')),
@@ -182,7 +190,7 @@ gulp.task('build-design-settings', ['pre-build'], function () {
         .pipe(gulp.dest(output + '/settings/design/css/fonts'));
 
     gulp.src('./src/settings/design/css/design.css')
-        .pipe(css())
+        .pipe(cleanCSS())
         .pipe(gulp.dest(output + '/settings/design/css'));
 
 });
@@ -208,7 +216,7 @@ gulp.task('build-configure-settings', ['pre-build'], function () {
         .pipe(gulp.dest(output + '/settings/configure/css/fonts'));
 
     gulp.src('./src/settings/configure/css/configure.css')
-        .pipe(css())
+        .pipe(cleanCSS())
         .pipe(gulp.dest(output + '/settings/configure/css'));
 
 });
@@ -219,7 +227,7 @@ gulp.task('build-searchcontent-app', ['pre-build'], function () {
     gulp.src('./src/searchcontent/index.html')
         .pipe(assets)
         .pipe(gulpif('*.js', uglify()))
-        .pipe(gulpif('*.css', css()))
+        .pipe(gulpif('*.css', cleanCSS()))
         .pipe(assets.restore())
         .pipe(useref())
         .pipe(addBuildVersion())

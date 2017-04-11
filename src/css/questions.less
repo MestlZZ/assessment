@@ -4,7 +4,6 @@
     position: relative;
     display: block;
     width: 100%;
-    background-color: @content-body-color;
 
     .without-intro & {
         padding-top: 70px;
@@ -12,6 +11,7 @@
 }
 
 .questions-wrapper {
+    position: relative;
     max-width: 1024px;
     min-width: 300px;
     margin: 0 auto;
@@ -19,10 +19,6 @@
 }
 
 .question {
-    @question-title-text-color: @Heading2-color;
-    @question-number-border-color: fade(@text-color, 10%);
-    @question-number-color: @main-color;
-
     position: relative;
     margin-bottom: 100px;
 
@@ -35,10 +31,7 @@
         padding: 18px 0 10px 60px;
         margin: 0 0 2px 0;
         position: relative;
-        word-wrap: break-word;
-        .h2-styled-text;      
-
-        color: @question-title-text-color;
+        word-wrap: break-word;  
 
         .index {
             position: absolute;
@@ -50,10 +43,7 @@
             left: 0;
             font-size: 40px;
             font-weight: 300;
-            white-space: nowrap;            
-            border-right: 1px solid @question-number-border-color;
-
-            color: @main-color;
+            white-space: nowrap;   
             .border-box();
         }
     }

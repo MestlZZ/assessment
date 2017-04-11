@@ -13,7 +13,7 @@
 
         $rootScope.title = assessment.title;
 
-        that.logoUrl = settings.logo.url;
+        that.logoUrl = settings.logoUrl;
         that.allowToContinue = !settings.xApi.required;
 
         that.restartCourse = function () {

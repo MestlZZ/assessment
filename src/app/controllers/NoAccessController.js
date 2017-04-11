@@ -12,7 +12,7 @@
 
         $rootScope.title = 'Access limited |' + assessment.title;
 
-        that.logoUrl = settings.logo.url;
+        that.logoUrl = settings.logoUrl;
 
         that.goToLogin = function () {
             $rootScope.skipLoginGuard = false;

@@ -1,28 +1,5 @@
 @import "common";
 
-@summary-incorrect-question-color: @incorrect-color;
-@summary-correct-question-color: @correct-color;
-@summary-survey-question-color: #49b8e7;
-
-@summary-title-font: @main-font-fontFamily;
-@summary-header-shadow-color: rgba(0, 0, 0, 0.35);
-@summary-header-text-color: @text-color;
-@summary-header-secondary-text-color: fade(@text-color, 70%);
-
-@summary-mastery-score-text-color: fade(@text-color, 80%);
-@summary-mastery-score-background: shade(@content-body-color, 5%);
-@summary-mastery-score-border-color: fade(@text-color, 50%);
-
-@summary-hint-text-color: fade(@text-color, 50%);
-
-@summary-progress-circle-secondary-color: fade(@text-color, 30%);
-@summary-progress-circle-correct-color: @correct-color;
-@summary-progress-circle-incorrect-color: @incorrect-color;
-
-@summary-progress-info-score-text-color: fade(@text-color, 80%);
-@summary-progress-info-text-success-color: fade(@correct-color, 80%);
-@summary-progress-info-text-fail-color: fade(@incorrect-color, 80%);
-
 .summary {
     min-width: 600px;
 
@@ -35,8 +12,7 @@
         position: relative;
         text-align: center;
         width: 100%;
-        box-shadow: 0 3px 6px -3px @summary-header-shadow-color;
-        margin-bottom: 3px;
+        margin-bottom: -1px;
 
         .main-background {
             position: absolute;
@@ -50,10 +26,8 @@
             .header-title-container {
                 display: inline-block;
                 max-width: 100%;
-                font-family: @summary-title-font;
 
                 .header-assessment-label {
-                    color: @summary-header-secondary-text-color;
                     font-size: 14px;
                     font-weight: normal;
                     text-align: left;
@@ -61,7 +35,6 @@
                 }
 
                 .header-assessment-title {
-                    color: @summary-header-text-color;
                     font-size: 34px;
                     max-width: 960px;
                     margin: 6px auto;
@@ -70,7 +43,6 @@
                 }
 
                 .header-questions-label {
-                    color: @summary-header-secondary-text-color;
                     font-size: 14px;
                     font-weight: normal;
                     text-align: right;
@@ -104,30 +76,6 @@
 
                             //width of circle
                             border-width: 3px;
-                            //progress color of circle
-                            border-color: @summary-progress-circle-secondary-color;
-                            //background color of circle
-                            color: @summary-progress-circle-secondary-color;
-
-                            &.success {                                 
-                                border-color: @summary-progress-circle-correct-color;
-
-                                & ~ .progress-control-info { 
-                                    .progress-control-info-text{
-                                        color: @summary-progress-info-text-success-color;
-                                    }
-                                }
-                            }
-
-                            &.fail { 
-                                border-color: @summary-progress-circle-incorrect-color;
-                                                         
-                                & ~ .progress-control-info { 
-                                    .progress-control-info-text{
-                                        color: @summary-progress-info-text-fail-color;
-                                    }
-                                }
-                            }
                         }
 
                         .progress-control-mastery-score {
@@ -138,9 +86,6 @@
                             height: 34px;
                             font-size: 12px;
                             line-height: 34px;
-                            color: @summary-mastery-score-text-color;
-                            border: 1px solid @summary-mastery-score-border-color;
-                            background: @summary-mastery-score-background;
 
                             &:hover {
                                 & + .tooltip-container {
@@ -152,38 +97,44 @@
                         }
 
                         .progress-control-hint {
+                            .display-flex();
+                            .flex-direction(column);
+                            .justify-content(center);
                             position: absolute;
-                            color: @summary-hint-text-color;
-                            width: 155px;
-                            margin-top: 10px;
+                            width: 165px;
+                            margin-top: -5px;
+
                             transition: opacity .2s linear;
 
                             &.left {
-                                margin-left: -197px;
+                                margin-left: -195px;
                                 text-align: left;
 
                                 .progress-control-hint-icon{
-                                    right: -15px;
+                                    .align-self(flex-end);
+                                }
+
+                                .progress-control-hint-text {
+                                    .align-self(flex-start);
                                 }
                             }
 
                             &.right {
+                                margin-left: 25px;
                                 text-align: right;
-                                margin-left: 40px;
 
                                 .progress-control-hint-icon{
-                                    left: -15px;
+                                    .align-self(flex-start);
                                     transform: ~'rotate3d(0,1,0,180deg)';
+                                }
+
+                                .progress-control-hint-text {
+                                    .align-self(flex-end);
                                 }
                             }
 
-                            .progress-control-hint-icon {
-                                position: absolute;
-                                top: -15px;
-                            }
-
                             .progress-control-hint-text {
-                                font: 19px Rabiohead, BadScriptRegular;
+                                font: 19px Rabiohead;
                             }
                         }
 
@@ -202,14 +153,24 @@
                             .progress-control-info-score{
                                 font-size: 36px;
                                 margin-right: -10px;
-                                color: @summary-progress-info-score-text-color;
                             }
 
                             .progress-control-info-text{
                                 font-weight: 600;
                                 text-transform: uppercase;
                                 font-size: 14px;
+
                                 .crop-text-with-dots();
+                                
+                                &.text-crop {
+                                    width: ~'calc(100% - 40px)';
+
+                                    &:hover + .tooltip-container {
+                                        .title { 
+                                            opacity: 1;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -219,31 +180,26 @@
             .summary-buttons {
                 .display-flex;
                 .justify-content(center);
-                text-align: center;
                 padding-top: 25px;
+                text-align: center;
 
                 .summary-button-container {
                     position: relative;
 
                     .summary-retry-notification-container {
-                        @summary-attempt-notification-background-color: fade(@incorrect-color, 30%);
-                        @summary-attempt-notification-text-color: @text-color;
-
                         position: absolute;
                         margin-top: 10px;
                         font-size: 14px;
-                        color: @summary-attempt-notification-text-color;
-                        background-color: @summary-attempt-notification-background-color;
                         border-radius: 2px;
 
-                        .summary-retry-notification-icon{
-                            width: 10px;
-                            height: 10px;
+                        .summary-retry-notification-icon {
                             position: absolute;
-                            overflow: hidden;
+                            width: 14px;
+                            height: 10px;
                             left: 24px;
                             top: -10px;
                             line-height: 14px;
+                            overflow: hidden;
 
                             &:after {
                                 content: '';
@@ -254,7 +210,6 @@
                                 left: 2px;
                                 -webkit-transform: rotate(45deg);
                                 transform: rotate(45deg);
-                                background-color: @summary-attempt-notification-background-color;
                             }
                         }
 
@@ -286,31 +241,12 @@
     }
 
     .summary-questions {
-        @questions-background-color: @content-body-color;
-        @questions-title-text-color: @text-color;
-
-        @question-border-bottom-color: fade(@text-color, 10%);
-        @question-text-color: @text-color;
-
-        @question-correct-border-left-color: fade(@correct-color, 50%);
-        @question-correct-number-color: @correct-color;
-        @question-correct-icon-color: @correct-color;
-
-        @question-survey-border-left-color: fade(@secondary-color, 50%);
-        @question-survey-number-color: @secondary-color;
-        @question-survey-icon-color: @secondary-color;
-
-        @question-incorrect-border-left-color: fade(@incorrect-color, 50%);
-        @question-incorrect-number-color: @incorrect-color;
-        @question-incorrect-icon-color: @incorrect-color;
-
         position: relative;
-        background: @questions-background-color;
 
         .summary-questions-container {
+            position: relative;
             padding-left: 40px;
             padding-right: 40px;
-            position: relative;
             text-align: center;
 
             .questions-title {
@@ -318,7 +254,6 @@
                 margin-top: 50px;
                 text-transform: uppercase;
                 font-size: 22px;
-                color: @questions-title-text-color;
                 .crop-text-by-size-with-dots-multiline(100%);
             }
 
@@ -331,11 +266,11 @@
                     width: 100%;
                     max-width: 800px;
                     padding-bottom: 4px;
-                    border-bottom: 1px solid @question-border-bottom-color;
                     display: table;
                     table-layout: fixed;
 
                     .question-number-cell {
+                        padding-right: 10px;
                         width: 67px;
                         height: 45px;
                         display: table-cell;
@@ -345,84 +280,59 @@
                             width: 100%;
                             height: 100%;
                             position: relative;
+                            .display-flex();
+                            .justify-content(space-between);
+                            .align-items(center);
+                            .flex-direction(row);
 
                             .question-number {
-                                position: absolute;
-                                top: 50%;
-                                right: 8px;
                                 height: 50px;
-                                margin-top: -27px;
                                 letter-spacing: -2px;
-                                color: @question-incorrect-number-color;
                                 font-weight: 300;
                                 font-size: 36px;
+                                line-height: 50px;
                             }
 
                             .question-icon {
                                 .icon(incorrectCross);
 
-                                position: absolute;
-                                color: @question-incorrect-icon-color;
-                                top: 50%;
+                                position: relative;
+                                top: 3px;
                                 font-size: 13px;
-                                margin-top: -7px;
-                                margin-left: -5px;
+                                
                             }
                         }
                     }
 
                     .question-title-cell {
-                        border-left: 1px solid @question-incorrect-border-left-color;
-                        font-size: 18px;
-                        font-weight: normal;
                         display: table-cell;
                         padding: 5px 13px;
+                        line-height: 30px;
+                        font-size: 18px;
+                        font-weight: normal;
                         vertical-align: middle;
                         word-wrap: break-word;
-                        line-height: 30px;
                     }
 
                     &.correct {
                         .question-number-cell {
                             .question-number-container {
-                                .question-number {
-                                    color: @question-correct-number-color;
-                                }
-
                                 .question-icon {
                                     .icon(checkMark);
-
-                                    color: @question-correct-icon-color;
-                                    margin-top: -8px;
                                     font-size: 16px;
                                 }
                             }
-                        }
-
-                        .question-title-cell {
-                            border-left: 1px solid @question-correct-border-left-color;
                         }
                     }                    
 
                     &.survey {
                         .question-number-cell {
                             .question-number-container {
-                                .question-number {
-                                    color: @question-survey-number-color;
-                                }
-
                                 .question-icon {
                                     .icon(survey);
-                                    
-                                    color: @question-survey-icon-color;
-                                    margin-top: -8px;
                                     font-size: 16px;
                                 }
                             }
-                        }
-
-                        .question-title-cell {
-                            border-left: 1px solid @question-survey-border-left-color;
                         }
                     }
                 }
@@ -438,7 +348,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #323a45;
     transition: opacity 250ms ease-in;
     z-index: 110;
 
@@ -458,8 +367,6 @@
         top: 30%;
         left: 50%;
         margin-left: -200px;
-        background-color: #FFF;
-        border: 4px solid #E6E6E6;
         border-radius: 4px;
         text-align: center;
 
@@ -468,7 +375,6 @@
             position: relative;
             padding: 20px 20px 20px 50px;
             font-size: 16px;
-            color: #424e5e;
 
             &:before {
                 content: '';
